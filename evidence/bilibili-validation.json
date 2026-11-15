@@ -1,0 +1,99 @@
+{
+  "source": "Physical DS100 HW2.4 / Bootloader4.0 / LCD9488",
+  "build": "background-r11-input-ack",
+  "client": "0.5.6.dev1",
+  "physical_device": true,
+  "synthetic_instrument_data": false,
+  "firmware_written": false,
+  "video": {
+    "url": "https://www.bilibili.com/video/BV1tHsW6kEsE/",
+    "bvid": "BV1tHsW6kEsE",
+    "title": "给正点原子 DS100 做了个开源上位机",
+    "bilibili_duration_seconds": 487,
+    "local_duration_seconds": 486.168,
+    "local_sha256": "3e2d4ecd4a97935a4c2118be8a3ca887fab9d6f31cab96af1a455bc78088a477",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "chapters": 20,
+    "live_demonstration_chapters": 3,
+    "caption_cues": 211,
+    "ai_narration": true,
+    "risk_warning_at_start_and_end": true,
+    "qt_mouse_automation": true,
+    "cursor_click_overlay": true,
+    "speed": "1x; native response waits were not accelerated"
+  },
+  "recording": {
+    "native_frames": 1010,
+    "continuous_detents": 6,
+    "automatic_resyncs": 0,
+    "tested_positions_and_ranges_restored": true,
+    "scenes": [
+      {
+        "id": "connect",
+        "seconds": 12.033333333333333,
+        "native_frames_before": 3,
+        "native_frames_after": 184,
+        "success": true
+      },
+      {
+        "id": "menu",
+        "seconds": 18.033333333333335,
+        "native_frames_before": 184,
+        "native_frames_after": 427,
+        "success": true
+      },
+      {
+        "id": "held_m",
+        "seconds": 11.033333333333333,
+        "native_frames_before": 427,
+        "native_frames_after": 581,
+        "success": true
+      },
+      {
+        "id": "held_e",
+        "seconds": 11.033333333333333,
+        "native_frames_before": 581,
+        "native_frames_after": 732,
+        "success": true
+      },
+      {
+        "id": "quick",
+        "seconds": 10.033333333333333,
+        "native_frames_before": 732,
+        "native_frames_after": 853,
+        "success": true
+      },
+      {
+        "id": "channel",
+        "seconds": 6.033333333333333,
+        "native_frames_before": 853,
+        "native_frames_after": 936,
+        "success": true
+      },
+      {
+        "id": "capture",
+        "seconds": 5.033333333333333,
+        "native_frames_before": 936,
+        "native_frames_after": 1010,
+        "success": true
+      }
+    ]
+  },
+  "media_checks": {
+    "all_narration_text_matches_timing_metadata": true,
+    "captions_within_safe_width": true,
+    "external_caption_count": true,
+    "full_video_and_audio_decode": true,
+    "audio_level_within_target": true,
+    "audio_peak_below_zero": true
+  },
+  "limits": [
+    "This short recording does not establish all-mode or long-term reliability.",
+    "30 fps is the video frame rate, not a fixed hardware refresh or sample rate.",
+    "Highest acquisition modes and measurement accuracy are not fully verified.",
+    "Audio format, decode, level and timing were checked. No human listening review is claimed."
+  ],
+  "verified_utc": "2026-11-15T16:55:29.542688+00:00"
+}
