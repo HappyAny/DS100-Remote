@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ds100-remote-research"
+version = "0.5.6.dev1"
+description = "DS100 desktop tools and firmware research"
+requires-python = ">=3.10"
+license = "GPL-3.0-only"
+dependencies = ["numpy>=1.24", "PySide6>=6.5", "Pillow>=10"]
+
+[project.optional-dependencies]
+research = ["capstone>=5,<6", "unicorn>=2.1.4,<3", "pytest>=8"]
+
+[project.scripts]
+ds100-remote = "ds100.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.data-files]
+"share/ds100-remote/fonts" = ["assets/fonts/NotoSansCJKsc-Regular.otf", "assets/fonts/OFL.txt", "assets/fonts/source.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

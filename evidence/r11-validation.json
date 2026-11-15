@@ -1,0 +1,100 @@
+{
+  "source": "Physical DS100 HW2.4 / bootloader4.0 / LCD9488",
+  "build": "background-r11-input-ack",
+  "client": "0.5.5.dev1",
+  "software_checks_passed": 273,
+  "recording": {
+    "physical_device": true,
+    "synthetic_instrument_data": false,
+    "qt_mouse_automation": true,
+    "cursor_click_overlay": true,
+    "native_frames": 2059,
+    "continuous_detents": 11,
+    "automatic_resyncs": 1,
+    "settings_restored": true,
+    "scenes": [
+      {
+        "id": "connect",
+        "seconds": 12.033333333333333,
+        "native_frames_before": 3,
+        "native_frames_after": 190,
+        "success": true
+      },
+      {
+        "id": "menu",
+        "seconds": 18.033333333333335,
+        "native_frames_before": 190,
+        "native_frames_after": 473,
+        "success": true
+      },
+      {
+        "id": "held_m",
+        "seconds": 24.033333333333335,
+        "native_frames_before": 473,
+        "native_frames_after": 863,
+        "success": true
+      },
+      {
+        "id": "held_e",
+        "seconds": 24.033333333333335,
+        "native_frames_before": 863,
+        "native_frames_after": 1209,
+        "success": true
+      },
+      {
+        "id": "quick",
+        "seconds": 28.033333333333335,
+        "native_frames_before": 1209,
+        "native_frames_after": 1629,
+        "success": true
+      },
+      {
+        "id": "channel",
+        "seconds": 14.033333333333333,
+        "native_frames_before": 1629,
+        "native_frames_after": 1858,
+        "success": true
+      },
+      {
+        "id": "capture",
+        "seconds": 12.033333333333333,
+        "native_frames_before": 1858,
+        "native_frames_after": 2059,
+        "success": true
+      }
+    ]
+  },
+  "previous_control_checks": {
+    "strict_cases": 7,
+    "nonzero_cases": 8,
+    "held_feedback_seconds": [
+      0.2555,
+      0.296
+    ],
+    "menu_seconds": [
+      1.0435,
+      1.242
+    ],
+    "visible_m_e_cycles": 2
+  },
+  "limits": [
+    "Occasional resync pauses.",
+    "No all-mode or long-term validation.",
+    "No new R11 all-mode pixel comparison.",
+    "Measurement accuracy and highest modes unverified."
+  ],
+  "current_client": "0.5.6.dev1",
+  "recording_client": "0.5.5.dev1",
+  "identity_guard_hardware": {
+    "passed": true,
+    "administrator": false,
+    "info_build": "background-r11-input-ack",
+    "screen_size": [
+      480,
+      320
+    ],
+    "read_only": true,
+    "firmware_written": false
+  },
+  "identity_guard_software_checks": true
+}

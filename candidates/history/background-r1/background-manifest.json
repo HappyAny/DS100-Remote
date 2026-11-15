@@ -1,0 +1,71 @@
+{
+  "status": "UNVERIFIED - do not treat this image as a tested firmware release",
+  "variant": "background-screen",
+  "scope": "INFO and screen tiles only. Waveform and run control are not bound to device functions.",
+  "source_sha256": "5030073c8ffe006d3727e4c13b80ca4aa89c3898a539ae7d4e4a2bf8bb216776",
+  "candidate_file": "DS100-V4.8-background-screen-UNVERIFIED.bin",
+  "candidate_sha256": "b3f3edf70532adeb3450d4a80fda7313ab1e964098d1df9547cac2a262ffd502",
+  "candidate_size_bytes": 429952,
+  "decoded_original_bytes_changed": 14,
+  "payload_base": "0x8078800",
+  "payload_size_bytes": 1804,
+  "flash_end_assumption": "0x8080000",
+  "hooks": [
+    {
+      "address": "0x8045476",
+      "before": "2de9f14f",
+      "after": "33f0c3b9",
+      "target": "0x8078800",
+      "symbol": "ds100_v48_scsi_hook"
+    },
+    {
+      "address": "0x8016f5c",
+      "before": "fef715fa",
+      "after": "61f08efc",
+      "target": "0x807887c",
+      "symbol": "ds100_v48_poll_wrapper"
+    }
+  ],
+  "extra_edits": [
+    {
+      "address": "0x80306d2",
+      "before": "14f00afe",
+      "after": "00bf00bf",
+      "purpose": "Keep USB active when the user leaves the USB menu. Power-off still uses the stock shutdown path."
+    },
+    {
+      "address": "0x80454de",
+      "before": "6bd0",
+      "after": "00bf",
+      "purpose": "Reject WRITE(10) through the stock unsupported-command path."
+    }
+  ],
+  "symbols": {
+    "ds100_crc32": "0x8078920",
+    "ds100_remote_handle": "0x8078950",
+    "ds100_v48_original_scsi": "0x8078c5c",
+    "ds100_v48_poll_wrapper": "0x807887c",
+    "ds100_v48_screen_backend": "0x8078c54",
+    "ds100_v48_scsi_hook": "0x8078800"
+  },
+  "section_sizes": "text\t   data\t    bss\t    dec\t    hex\tfilename\n   1804\t      0\t      0\t   1804\t    70c\tbuild/arm/v48-background-screen.elf",
+  "mechanism": "Queue vendor CDB 0xC0 in the USB interrupt. Read LCD pixels in the existing display loop. Reuse the stock 4096-byte MSC buffer.",
+  "limits": [
+    "The connected device reports V4.7. This candidate targets the downloaded V4.8 image only.",
+    "No MCU flash backup is available. The user has no SWD debugger.",
+    "Bootloader 4.0 update validation and recovery are not verified.",
+    "The USB-state reuse and display-loop hook require physical-device validation.",
+    "Screen scans can contain tearing. The LCD has no latched full-frame snapshot here.",
+    "Background USB operation after leaving the stock USB menu is not verified on hardware."
+  ],
+  "flashed": false,
+  "source_files_sha256": {
+    "firmware/ds100_remote.c": "5d5a203a51e2d7840247f913c7c82b2f35155fa4414cb1fedbfb77860edb01cb",
+    "firmware/ds100_remote.h": "ac0d86b4e06f3550fad5e3fba4d1c39d89090a7f9326f7bf6e87d2860141baab",
+    "firmware/ds100_v48_screen.c": "6e730d2997ab43edafb8fa3797ed50d408f5bb58ee46a33d6ec1a2a2a1308fbc",
+    "firmware/provider_fixture.c": "8504c8bb96fde2720311d3996b73bff6c5a6891878dadd04ddba82b13b5e470e",
+    "firmware/v48_hooks.c": "3401633bc80c12d1d6a4ad18816f192e75bb76e764f3c9efc1f7dcdf5a7ce692",
+    "firmware/v48_patch.ld": "fbc99796dcaa96a0ba1fe6d2f00674d7b339f2674e0329f4cd326ab64945c37a",
+    "firmware/v48_trampoline.S": "0e652371b3050f9624b16d102aaaaebbb8f71c20aa9e4de45b7b7b78b2e90e64"
+  }
+}

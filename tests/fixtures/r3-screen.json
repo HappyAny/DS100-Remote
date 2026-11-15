@@ -1,0 +1,10 @@
+{
+  "source": "Project capture of the actual DS100 normal view, R3 firmware.",
+  "size": [
+    480,
+    320
+  ],
+  "sha256": "e87c6cf62b74c7de3cd53b15b4cdf8e3fc3d38f1f8b6e9251a7c2281e0fda163",
+  "purpose": "Receiver reconstruction regression fixture. Not a current performance measurement.",
+  "vendor_ui_rights": "Displayed vendor UI retains original rights."
+}

@@ -1,0 +1,124 @@
+{
+  "format": "DS100-R11-PATCH-1",
+  "license": "GPL-3.0-only for the project patch and appended code. Vendor base rights remain unchanged.",
+  "build": "background-r11-input-ack",
+  "base_sha256": "5030073c8ffe006d3727e4c13b80ca4aa89c3898a539ae7d4e4a2bf8bb216776",
+  "base_size": 427752,
+  "target_sha256": "f5758123281d5cf96f991417447aa41652418af10de68fea6d2a142cf39942e7",
+  "target_size": 439552,
+  "payload_file": "r11-payload.bin",
+  "payload_sha256": "a6a1b458fc2850f47496497210641e9eb6e3d6514c05c0fc1ba4ee573fd9610f",
+  "changed_original_bytes": 69,
+  "edits": [
+    {
+      "offset": 782,
+      "before": "00",
+      "after": "68"
+    },
+    {
+      "offset": 784,
+      "before": "0cf8",
+      "after": "4bfb"
+    },
+    {
+      "offset": 18640,
+      "before": "30f00bfd",
+      "after": "00bf00bf"
+    },
+    {
+      "offset": 19344,
+      "before": "22",
+      "after": "63"
+    },
+    {
+      "offset": 19346,
+      "before": "19f8",
+      "after": "1eff"
+    },
+    {
+      "offset": 19684,
+      "before": "21",
+      "after": "63"
+    },
+    {
+      "offset": 19686,
+      "before": "35ff",
+      "after": "bcfe"
+    },
+    {
+      "offset": 28508,
+      "before": "fef715fa",
+      "after": "61f0a0fc"
+    },
+    {
+      "offset": 132818,
+      "before": "14f00afe",
+      "after": "00bf00bf"
+    },
+    {
+      "offset": 154324,
+      "before": "70b5404c",
+      "after": "42f0f8be"
+    },
+    {
+      "offset": 182754,
+      "before": "f8b4ec4a",
+      "after": "3cf0d1b8"
+    },
+    {
+      "offset": 183480,
+      "before": "10b51446",
+      "after": "3bf01bbe"
+    },
+    {
+      "offset": 185032,
+      "before": "70b5ff4e",
+      "after": "3bf050bc"
+    },
+    {
+      "offset": 185890,
+      "before": "2de9f04f",
+      "after": "3bf073b9"
+    },
+    {
+      "offset": 185992,
+      "before": "2de9ff4f",
+      "after": "3bf057b9"
+    },
+    {
+      "offset": 217660,
+      "before": "5e4910b5",
+      "after": "33f08cbc"
+    },
+    {
+      "offset": 217668,
+      "before": "f0f79efc",
+      "after": "00bf00bf"
+    },
+    {
+      "offset": 217834,
+      "before": "3348",
+      "after": "7047"
+    },
+    {
+      "offset": 218230,
+      "before": "2de9f14f",
+      "after": "33f0c3b9"
+    },
+    {
+      "offset": 218334,
+      "before": "6bd0",
+      "after": "00bf"
+    },
+    {
+      "offset": 254012,
+      "before": "70b50e46",
+      "after": "2af094bc"
+    },
+    {
+      "offset": 254096,
+      "before": "70b50d46",
+      "after": "2af07abc"
+    }
+  ]
+}

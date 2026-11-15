@@ -1,0 +1,96 @@
+{
+  "status": "UNVERIFIED - do not treat this image as a tested firmware release",
+  "variant": "background-screen",
+  "revision": "r4-fast",
+  "scope": "INFO and screen tiles only. Waveform and run control are not bound to device functions.",
+  "source_sha256": "5030073c8ffe006d3727e4c13b80ca4aa89c3898a539ae7d4e4a2bf8bb216776",
+  "candidate_file": "DS100-V4.8-background-screen-r4-UNVERIFIED.bin",
+  "candidate_sha256": "3f19055fb3dc8ed09a774ba5db94a91f116f9d401c8585af99ad92953eb6e51d",
+  "candidate_size_bytes": 431744,
+  "decoded_original_bytes_changed": 23,
+  "payload_base": "0x8078800",
+  "payload_size_bytes": 3609,
+  "flash_end_assumption": "0x8080000",
+  "hooks": [
+    {
+      "address": "0x8045476",
+      "before": "2de9f14f",
+      "after": "33f0c3b9",
+      "target": "0x8078800",
+      "symbol": "ds100_v48_scsi_hook"
+    },
+    {
+      "address": "0x8016f5c",
+      "before": "fef715fa",
+      "after": "61f08efc",
+      "target": "0x807887c",
+      "symbol": "ds100_v48_poll_wrapper"
+    },
+    {
+      "address": "0x8035ad4",
+      "before": "70b5404c",
+      "after": "42f040bf",
+      "target": "0x8078958",
+      "symbol": "ds100_v48_clock_hook"
+    }
+  ],
+  "extra_edits": [
+    {
+      "address": "0x80306d2",
+      "before": "14f00afe",
+      "after": "00bf00bf",
+      "purpose": "Keep USB active in the USB dialog exit handler."
+    },
+    {
+      "address": "0x80148d0",
+      "before": "30f00bfd",
+      "after": "00bf00bf",
+      "purpose": "Keep USB active in the shared UI callback referenced at 0x08014ca8."
+    },
+    {
+      "address": "0x80452ea",
+      "before": "3348",
+      "after": "7047",
+      "purpose": "Return from the USB stop wrapper so indirect calls also retain the connection."
+    },
+    {
+      "address": "0x80454de",
+      "before": "6bd0",
+      "after": "00bf",
+      "purpose": "Reject WRITE(10) through the stock unsupported-command path."
+    }
+  ],
+  "symbols": {
+    "ds100_crc32": "0x8078974",
+    "ds100_remote_handle": "0x80789a4",
+    "ds100_screen_rle": "0x8078d1c",
+    "ds100_v48_clock_hook": "0x8078958",
+    "ds100_v48_make_info": "0x807903c",
+    "ds100_v48_original_clock": "0x8079164",
+    "ds100_v48_original_scsi": "0x8079158",
+    "ds100_v48_poll_wrapper": "0x807887c",
+    "ds100_v48_screen_backend": "0x8079150",
+    "ds100_v48_scsi_hook": "0x8078800"
+  },
+  "section_sizes": "text\t   data\t    bss\t    dec\t    hex\tfilename\n   3609\t      0\t      0\t   3609\t    e19\tbuild/arm/v48-background-fast.elf",
+  "mechanism": "Queue vendor CDB 0xC0 in the USB interrupt. Read LCD pixels in the existing display loop. Reuse the stock 4096-byte MSC buffer. R4 adds ILI9488 row reads and bounded RLE565 output with complete-row checkpoints.",
+  "limits": [
+    "This patch targets only the pinned V4.8 image. The device originally ran V4.7; R3 is now installed.",
+    "No MCU flash backup is available. The user has no SWD debugger.",
+    "Bootloader 4.0 accepted R1 through R3. Full official rollback has not been tested.",
+    "R3 background USB was verified. Each new image still requires physical-device validation.",
+    "Screen scans can contain tearing. The LCD has no latched full-frame snapshot here.",
+    "Measurement accuracy and maximum acquisition modes with USB's 168 MHz clock policy are not verified."
+  ],
+  "flashed": false,
+  "source_files_sha256": {
+    "firmware/ds100_remote.c": "b56a73f544f1007ec1b85e36f2b5f5e4479bd9dc4da30d2c1091dbeea511c2c7",
+    "firmware/ds100_remote.h": "fe763ceb5f7e13c1fbca603732eca7358c8eb39e556f6faa47b7087ea338e270",
+    "firmware/ds100_screen_stream.c": "c2b36c016e51a1c01878758c3581550460f49f3bed4d2a4f81e99c31ef1ea895",
+    "firmware/ds100_v48_screen.c": "e4f3d4e102f4d76794e32301e11ce11fe4ca38560b51ea760ba2bb56ff0bfa2a",
+    "firmware/provider_fixture.c": "e99ede5198ec091e41e8891c81c1f37f6b9cb763c751e46c0b1bd8565efc5088",
+    "firmware/v48_hooks.c": "2425b9c2945fc868a17948d8854d2bbce66c6c183a2ce5e5de74b2353cd54163",
+    "firmware/v48_patch.ld": "b8d9f4c509c3defebef354865940de6bed5a02e2a55af79ca42bcc1d04f7719e",
+    "firmware/v48_trampoline.S": "2535769e32f496c5f840d11f74b040c45ce35bcad91df831f2bec04fc0371184"
+  }
+}

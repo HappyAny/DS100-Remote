@@ -1,0 +1,162 @@
+{
+  "status": "UNVERIFIED - do not treat this image as a tested firmware release",
+  "variant": "background-screen",
+  "revision": "r5-profile",
+  "scope": "INFO and screen tiles only. Waveform and run control are not bound to device functions. Adds passive draw-traffic counters and a constant-data USB throughput probe. Does not implement a 30 fps mirror.",
+  "source_sha256": "5030073c8ffe006d3727e4c13b80ca4aa89c3898a539ae7d4e4a2bf8bb216776",
+  "candidate_file": "DS100-V4.8-background-draw-profile-r5-UNVERIFIED.bin",
+  "candidate_sha256": "3a3119e25740ee507ca37bfe0a436011d641b1f240e03667955743b39cb90a9e",
+  "candidate_size_bytes": 432256,
+  "decoded_original_bytes_changed": 47,
+  "payload_base": "0x8078800",
+  "payload_size_bytes": 4197,
+  "flash_end_assumption": "0x8080000",
+  "hooks": [
+    {
+      "address": "0x8045476",
+      "before": "2de9f14f",
+      "after": "33f0c3b9",
+      "target": "0x8078800",
+      "symbol": "ds100_v48_scsi_hook"
+    },
+    {
+      "address": "0x8016f5c",
+      "before": "fef715fa",
+      "after": "61f08efc",
+      "target": "0x807887c",
+      "symbol": "ds100_v48_poll_wrapper"
+    },
+    {
+      "address": "0x8035ad4",
+      "before": "70b5404c",
+      "after": "42f042bf",
+      "target": "0x807895c",
+      "symbol": "ds100_v48_clock_hook"
+    },
+    {
+      "address": "0x801030e",
+      "before": "00f00cf8",
+      "after": "68f033fb",
+      "target": "0x8078978",
+      "symbol": "ds100_v48_profile_init"
+    },
+    {
+      "address": "0x803ccb8",
+      "before": "10b51446",
+      "after": "3bf068be",
+      "target": "0x807898c",
+      "symbol": "ds100_v48_profile_point"
+    },
+    {
+      "address": "0x803d622",
+      "before": "2de9f04f",
+      "after": "3bf0d3b9",
+      "target": "0x80789cc",
+      "symbol": "ds100_v48_profile_rect"
+    },
+    {
+      "address": "0x803d688",
+      "before": "2de9ff4f",
+      "after": "3bf0ccb9",
+      "target": "0x8078a24",
+      "symbol": "ds100_v48_profile_bitmap"
+    },
+    {
+      "address": "0x804e03c",
+      "before": "70b50e46",
+      "after": "2af036bd",
+      "target": "0x8078aac",
+      "symbol": "ds100_v48_profile_span_a"
+    },
+    {
+      "address": "0x804e090",
+      "before": "70b50d46",
+      "after": "2af02abd",
+      "target": "0x8078ae8",
+      "symbol": "ds100_v48_profile_span_b"
+    }
+  ],
+  "extra_edits": [
+    {
+      "address": "0x80306d2",
+      "before": "14f00afe",
+      "after": "00bf00bf",
+      "purpose": "Keep USB active in the USB dialog exit handler."
+    },
+    {
+      "address": "0x80148d0",
+      "before": "30f00bfd",
+      "after": "00bf00bf",
+      "purpose": "Keep USB active in the shared UI callback referenced at 0x08014ca8."
+    },
+    {
+      "address": "0x80452ea",
+      "before": "3348",
+      "after": "7047",
+      "purpose": "Return from the USB stop wrapper so indirect calls also retain the connection."
+    },
+    {
+      "address": "0x80454de",
+      "before": "6bd0",
+      "after": "00bf",
+      "purpose": "Reject WRITE(10) through the stock unsupported-command path."
+    }
+  ],
+  "symbols": {
+    "ds100_crc32": "0x8078b24",
+    "ds100_remote_handle": "0x8078b54",
+    "ds100_v48_clock_hook": "0x807895c",
+    "ds100_v48_draw_profile": "0x8079240",
+    "ds100_v48_make_info": "0x8079000",
+    "ds100_v48_original_bitmap": "0x80792cc",
+    "ds100_v48_original_clock": "0x8079118",
+    "ds100_v48_original_point": "0x80792b4",
+    "ds100_v48_original_rect": "0x80792c0",
+    "ds100_v48_original_scsi": "0x807910c",
+    "ds100_v48_original_span_a": "0x80792d8",
+    "ds100_v48_original_span_b": "0x80792e4",
+    "ds100_v48_poll_wrapper": "0x807887c",
+    "ds100_v48_profile_bitmap": "0x8078a24",
+    "ds100_v48_profile_init": "0x8078978",
+    "ds100_v48_profile_pass": "0x8079204",
+    "ds100_v48_profile_point": "0x807898c",
+    "ds100_v48_profile_rect": "0x80789cc",
+    "ds100_v48_profile_span_a": "0x8078aac",
+    "ds100_v48_profile_span_b": "0x8078ae8",
+    "ds100_v48_screen_backend": "0x8079104",
+    "ds100_v48_scsi_hook": "0x8078800"
+  },
+  "section_sizes": "text\t   data\t    bss\t    dec\t    hex\tfilename\n   4197\t      0\t     64\t   4261\t   10a5\tbuild/arm/v48-background-profile.elf",
+  "mechanism": "Queue vendor CDB 0xC0 in the USB interrupt. Read LCD pixels in the existing display loop. Reuse the stock 4096-byte MSC buffer.",
+  "limits": [
+    "This patch targets only the pinned V4.8 image. The device originally ran V4.7; R3 is now installed.",
+    "No MCU flash backup is available. The user has no SWD debugger.",
+    "Bootloader 4.0 accepted R1 through R3. Full official rollback has not been tested.",
+    "R3 background USB was verified. Each new image still requires physical-device validation.",
+    "Screen scans can contain tearing. The LCD has no latched full-frame snapshot here.",
+    "Measurement accuracy and maximum acquisition modes with USB's 168 MHz clock policy are not verified.",
+    "The reviewed RAM tail and preservation of real drawing behavior require physical validation. Profiling adds CPU work and cannot alone establish final mirror frame rate."
+  ],
+  "flashed": false,
+  "source_files_sha256": {
+    "firmware/ds100_remote.c": "1abd1c94141c685807cd1c70cd4b99acf1c725615ecb49c99f1d12754649d1e9",
+    "firmware/ds100_remote.h": "c5fa409d5fbbdb89f7173b1234bc3459aba7c1508f3596dda3a4fd710b3862ce",
+    "firmware/ds100_screen_stream.c": "c2b36c016e51a1c01878758c3581550460f49f3bed4d2a4f81e99c31ef1ea895",
+    "firmware/ds100_v48_screen.c": "cac929c2b99ba352b424aab88c3e26f726db18f9f37c7134c5dbe05241e5900a",
+    "firmware/provider_fixture.c": "15d2cb7e57e63a5876d1017274a238e7508d1ca0618b46884f01230fdd8236a6",
+    "firmware/v48_draw_profile.c": "4be1b07a821be94684d21766da7544d9cadd36fb60037a93012161c61724a49e",
+    "firmware/v48_hooks.c": "ef17dd257166679ef214543fd552791c03eba0e03a5ad5fa79085a456a74c198",
+    "firmware/v48_patch.ld": "b8d9f4c509c3defebef354865940de6bed5a02e2a55af79ca42bcc1d04f7719e",
+    "firmware/v48_profile_patch.ld": "d9f22ba5b3d25db670c5f24c7af1b9e9d35ef1c4569bacb38b6c243f2139b9e6",
+    "firmware/v48_profile_trampoline.S": "562d78f429768b6b159daf0efe0dc1933446177df308497c20a42ac02eaf2d9c",
+    "firmware/v48_trampoline.S": "2535769e32f496c5f840d11f74b040c45ce35bcad91df831f2bec04fc0371184"
+  },
+  "ram_state": {
+    "address": "0x2002ff90",
+    "maximum_bytes": 112,
+    "used_bytes": 64,
+    "initialization": "Clear after stock heap initialization at 0x0801030e.",
+    "proof": "analysis/v4.8/initial-ram-report.json",
+    "heap_allocation": false
+  }
+}

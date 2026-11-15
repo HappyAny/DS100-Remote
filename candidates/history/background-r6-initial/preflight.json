@@ -1,0 +1,31 @@
+{
+  "prepared_utc": "2026-11-14T19:37:33.166761+00:00",
+  "user_authorization": "所有的按键P A M E 两个拨码的控制逻辑电脑接入，我希望不需要切换usb再退出也能直接接入电脑",
+  "authorization_basis": "The user requested complete key/wheel control and direct USB connection. This local preflight does not authorize an unattended physical flash.",
+  "revision": "r6",
+  "usb_active_core_clock_hz": 168000000,
+  "physical_step_waiting_for": "用户重新进入 A+P 独立升级界面。",
+  "target": {
+    "original_software_reported": "4.7",
+    "installed_software": "4.8 background-r3",
+    "hardware_reported": "2.4",
+    "bootloader_reported": "4.0"
+  },
+  "candidate": {
+    "file": "candidate/atk_dso.bin",
+    "sha256": "9c825981fc1166b9ccca85d207a0ee17e9abc00811349818201d9fabd5ee5be9",
+    "size_bytes": 433280
+  },
+  "official_v48_fallback": {
+    "file": "official-v48-fallback/atk_dso.bin",
+    "sha256": "5030073c8ffe006d3727e4c13b80ca4aa89c3898a539ae7d4e4a2bf8bb216776",
+    "size_bytes": 427752,
+    "is_original_device_backup": false
+  },
+  "checked_original_bytes_changed": 56,
+  "device_access_performed": false,
+  "device_writes_performed": false,
+  "firmware_flashed": false,
+  "mcu_flash_backed_up": false,
+  "note": "The normal USB menu is write protected. Updates use the independent A+P entry. R6 controls and automatic USB startup require physical validation. Its 168 MHz policy also applies on battery. It does not implement a 30 fps mirror."
+}

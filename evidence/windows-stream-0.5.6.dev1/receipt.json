@@ -1,0 +1,14 @@
+{
+  "frozen": true,
+  "physical_device_test": false,
+  "success": true,
+  "font_family": "Noto Sans CJK SC",
+  "screen_size": [
+    480,
+    320
+  ],
+  "source": "simulator",
+  "bundled_font_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+  "version": "0.5.6.dev1",
+  "exe_sha256": "93d910cda23d9158272610c84107bf3b3940a0427cbc657dd5fd8c18e10892f5"
+}

@@ -1,0 +1,62 @@
+{
+  "status": "UNVERIFIED - do not treat this image as a tested firmware release",
+  "variant": "screen",
+  "revision": "base-diag",
+  "scope": "INFO and screen tiles only. Waveform and run control are not bound to device functions.",
+  "source_sha256": "5030073c8ffe006d3727e4c13b80ca4aa89c3898a539ae7d4e4a2bf8bb216776",
+  "candidate_file": "DS100-V4.8-screen-UNVERIFIED.bin",
+  "candidate_sha256": "e1368301bbdb0c74fd0d496ebb1cf08dcfa0d62850731708cc56e8d2a4ce6c74",
+  "candidate_size_bytes": 430592,
+  "decoded_original_bytes_changed": 8,
+  "payload_base": "0x8078800",
+  "payload_size_bytes": 2505,
+  "flash_end_assumption": "0x8080000",
+  "hooks": [
+    {
+      "address": "0x8045476",
+      "before": "2de9f14f",
+      "after": "33f0c3b9",
+      "target": "0x8078800",
+      "symbol": "ds100_v48_scsi_hook"
+    },
+    {
+      "address": "0x8016f5c",
+      "before": "fef715fa",
+      "after": "61f084fc",
+      "target": "0x8078868",
+      "symbol": "ds100_v48_poll_wrapper"
+    }
+  ],
+  "extra_edits": [],
+  "symbols": {
+    "ds100_crc32": "0x807895c",
+    "ds100_remote_handle": "0x807898c",
+    "ds100_v48_clock_hook": "0x8078940",
+    "ds100_v48_make_info": "0x8078ce4",
+    "ds100_v48_original_clock": "0x8078de8",
+    "ds100_v48_original_scsi": "0x8078ddc",
+    "ds100_v48_poll_wrapper": "0x8078868",
+    "ds100_v48_screen_backend": "0x8078dd4",
+    "ds100_v48_scsi_hook": "0x8078800"
+  },
+  "section_sizes": "text\t   data\t    bss\t    dec\t    hex\tfilename\n   2505\t      0\t      0\t   2505\t    9c9\tbuild/arm/v48-screen.elf",
+  "mechanism": "Queue vendor CDB 0xC0 in the USB interrupt. Read LCD pixels in the existing display loop. Reuse the stock 4096-byte MSC buffer.",
+  "limits": [
+    "The connected device reports V4.7. This candidate targets the downloaded V4.8 image only.",
+    "No MCU flash backup is available. The user has no SWD debugger.",
+    "Bootloader 4.0 update validation and recovery are not verified.",
+    "The USB-state reuse and display-loop hook require physical-device validation.",
+    "Screen scans can contain tearing. The LCD has no latched full-frame snapshot here.",
+    "Background USB operation after leaving the stock USB menu is not verified on hardware."
+  ],
+  "flashed": false,
+  "source_files_sha256": {
+    "firmware/ds100_remote.c": "5d5a203a51e2d7840247f913c7c82b2f35155fa4414cb1fedbfb77860edb01cb",
+    "firmware/ds100_remote.h": "ac0d86b4e06f3550fad5e3fba4d1c39d89090a7f9326f7bf6e87d2860141baab",
+    "firmware/ds100_v48_screen.c": "62973cad8d679db7e7469da8560a81491e418d2e42ebb7e6c0c13c30b0776d1c",
+    "firmware/provider_fixture.c": "8504c8bb96fde2720311d3996b73bff6c5a6891878dadd04ddba82b13b5e470e",
+    "firmware/v48_hooks.c": "2425b9c2945fc868a17948d8854d2bbce66c6c183a2ce5e5de74b2353cd54163",
+    "firmware/v48_patch.ld": "b8d9f4c509c3defebef354865940de6bed5a02e2a55af79ca42bcc1d04f7719e",
+    "firmware/v48_trampoline.S": "2535769e32f496c5f840d11f74b040c45ce35bcad91df831f2bec04fc0371184"
+  }
+}

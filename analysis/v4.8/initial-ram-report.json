@@ -1,0 +1,26 @@
+{
+  "decoded_sha256": "80b4bf7b5ced6c59a66aea4aa3a0cea36bc0a4ce6ce9ab90cd306a260878a082",
+  "physical_device_test": false,
+  "execution": "Only __main and __scatterload. Stop before stock main().",
+  "stack_pointer": "0x2002ff90",
+  "scatter_entries": [
+    {
+      "source": "0x807830c",
+      "destination": "0x20020000",
+      "size": 5696,
+      "function": "0x804b118"
+    },
+    {
+      "source": "0x80786e8",
+      "destination": "0x20021640",
+      "size": 59728,
+      "function": "0x804d738"
+    }
+  ],
+  "written_intervals": [
+    [
+      "0x20020000",
+      "0x2002ff90"
+    ]
+  ]
+}
