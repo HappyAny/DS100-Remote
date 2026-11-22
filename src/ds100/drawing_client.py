@@ -24,6 +24,7 @@ class DrawingSession:
     def notify_sync(self, active):
         if self.syncing != active:
             self.syncing = active
+            self.client.diagnostics.sync(active)
             if self.client.on_draw_sync is not None:
                 self.client.on_draw_sync(active)
 
@@ -71,6 +72,7 @@ class DrawingSession:
             # pressed key. Recover after this gesture has released all keys.
             self.replay = None
             self.resyncs += 1
+            self.client.diagnostics.resync(error)
             return None, False
         return self.accept_frames(frames), PACKET.unpack_from(payload)[3] != 0
 
@@ -99,6 +101,7 @@ class DrawingSession:
                 self.replay = None
                 failures += 1
                 self.resyncs += 1
+                self.client.diagnostics.resync(error)
                 if self.client._input_keys:
                     self.notify_sync(False)
                     raise MenuTransition('Use live readback until the held keys are released.') from error

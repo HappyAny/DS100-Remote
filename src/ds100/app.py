@@ -12,6 +12,7 @@ from PySide6.QtCore import Qt, QThread, Signal, QTimer, QPointF, QRectF, QStanda
 from PySide6.QtGui import QColor, QImage, QPainter, QPainterPath, QPen, QDesktopServices
 from PySide6.QtWidgets import QApplication, QFileDialog, QLabel, QMainWindow, QSizePolicy, QWidget
 from .protocol import Client, ProtocolError
+from .frame_delivery import LatestFrame
 from .simulator import SimulatorTransport
 from .storage import find_drives, list_files, load_csv, read_cfg
 from .fonts import configure_fonts
@@ -185,6 +186,7 @@ class ScreenLabel(QLabel):
 
 
 class MainWindow(QMainWindow):
+    frame_ready = Signal(int)
     drawing_sync = Signal(bool)
     quick_frame = Signal(object, float)
     menu_preview = Signal(object)
@@ -198,6 +200,8 @@ class MainWindow(QMainWindow):
         self.resize(736, 552)
         self.setMinimumSize(640, 510)
         self.client = None
+        self.frame_mailbox = LatestFrame()
+        self.frame_ready.connect(self.consume_frame, Qt.QueuedConnection)
         self.worker = None
         self.info = {}
         self.drive = None
@@ -350,8 +354,12 @@ class MainWindow(QMainWindow):
 
     def perform_quick_action(self, client, action):
         action_id, motion_stop = action
+        generation = self.frame_mailbox.generation
+        publisher = lambda pixels, elapsed: self.publish_frame(pixels, elapsed, generation)
+        client.on_input_frame = publisher
+        client.on_menu_preview = lambda pixels: self.publish_frame(pixels, 0., generation, True)
         options = dict(cancelled=lambda: QThread.currentThread().isInterruptionRequested(),
-                       on_frame=self.quick_frame.emit)
+                       on_frame=publisher)
         if motion_stop is not None:
             execute_motion(client, action_id, motion_stop, **options)
         else:
@@ -444,6 +452,7 @@ class MainWindow(QMainWindow):
         self.input_panel.set_available(False)
 
     def disconnect(self):
+        self.frame_mailbox.reset()
         self.stop_motion()
         self.action_pending = self.action_running = None
         self.queued_actions.clear()
@@ -536,6 +545,7 @@ class MainWindow(QMainWindow):
             self.read_screen()
         else:
             self.mirror_stop.set()
+            self.frame_mailbox.reset()
             self.timer.stop()
 
     def drawing_sync_changed(self, active):
@@ -553,8 +563,10 @@ class MainWindow(QMainWindow):
             return
         started = time.monotonic()
         self.client.on_draw_sync = self.drawing_sync.emit
-        self.client.on_menu_preview = self.menu_preview.emit
-        self.client.on_input_frame = self.quick_frame.emit
+        generation = self.frame_mailbox.generation
+        publisher = lambda pixels, elapsed: self.publish_frame(pixels, elapsed, generation)
+        self.client.on_menu_preview = lambda pixels: self.publish_frame(pixels, 0., generation, True)
+        self.client.on_input_frame = publisher
         if self.mirror.isChecked():
             self.mirror_stop.clear()
             client = self.client
@@ -568,7 +580,7 @@ class MainWindow(QMainWindow):
                     begin = time.monotonic()
                     pixels = client.screen(cancelled)
                     if pixels is not None:
-                        self.quick_frame.emit(pixels, time.monotonic()-begin)
+                        publisher(pixels, time.monotonic()-begin)
                     if client.draw_config is None:
                         self.mirror_stop.wait(.005)
             self.start_task(mirror_loop, lambda _: None)
@@ -578,8 +590,22 @@ class MainWindow(QMainWindow):
         self.start_task(lambda: self.client.screen(cancelled=lambda: QThread.currentThread().isInterruptionRequested()),
                         lambda pixels: self.show_pixels(pixels, time.monotonic() - started))
 
+    def publish_frame(self, pixels, elapsed, generation=None, preview=False):
+        generation = self.frame_mailbox.generation if generation is None else generation
+        if self.frame_mailbox.publish(pixels, elapsed, generation, preview):
+            self.frame_ready.emit(generation)
+
+    def consume_frame(self, generation):
+        frame = self.frame_mailbox.take(generation)
+        if frame is not None:
+            pixels, elapsed, preview = frame
+            if preview:
+                self.show_menu_preview(pixels)
+            else:
+                self.show_pixels(pixels, elapsed)
+
     def show_menu_preview(self, pixels):
-        image = QImage(pixels.tobytes(), 480, 320, 960, QImage.Format_RGB16).copy()
+        image = QImage(pixels.data, 480, 320, 960, QImage.Format_RGB16).copy()
         self.screen_label.preview = True
         self.screen_label.image = image
         self.screen_label.update()
@@ -588,13 +614,16 @@ class MainWindow(QMainWindow):
     def show_pixels(self, pixels, elapsed):
         if pixels is None:
             return
-        image = QImage(pixels.tobytes(), 480, 320, 960, QImage.Format_RGB16).copy()
+        image = QImage(pixels.data, 480, 320, 960, QImage.Format_RGB16).copy()
         if self.last_image is None or self.last_image != image:
             self.changed_mirror_count += 1
         if self.last_screen_pixels is None or not np.array_equal(
                 self.last_screen_pixels[24:292, 16:410], pixels[24:292, 16:410]):
             self.waveform_change_count += 1
-        self.last_screen_pixels = pixels.copy()
+        if pixels.flags.writeable:
+            pixels = np.array(pixels, dtype='<u2', order='C', copy=True)
+            pixels.flags.writeable = False
+        self.last_screen_pixels = pixels
         self.last_image = image
         self.mirror_count += 1
         self.last_scan_seconds = elapsed

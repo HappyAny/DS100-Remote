@@ -7,6 +7,7 @@ import zlib
 import time
 from collections import deque
 from threading import Lock
+from .diagnostics import Diagnostics
 
 MAGIC = b"D1RM"
 VERSION = 1
@@ -158,6 +159,8 @@ class Client:
     def __init__(self, transport):
         self.transport = transport
         self.sequence = 0
+        self.diagnostics = Diagnostics()
+        self.stream_stats_supported = False
         self.stream_rows = None
         self.input_supported = False
         self.draw_config = None
@@ -200,8 +203,21 @@ class Client:
 
     def _request_raw(self, command, args=(0, 0, 0, 0)):
         self.sequence = (self.sequence + 1) & 0xFFFFFFFF
-        packet = self.transport.exchange(make_cdb(command, self.sequence, args))
-        return parse_response(packet, command, self.sequence)
+        started, received = time.monotonic(), 0
+        try:
+            packet = self.transport.exchange(make_cdb(command, self.sequence, args))
+            received = len(packet)
+            payload = parse_response(packet, command, self.sequence)
+            if command == DRAW_STREAM and args[0] == 0 and self.stream_stats_supported:
+                try:
+                    self.diagnostics.stop(payload)
+                except ValueError as error:
+                    raise ProtocolError(str(error)) from error
+        except Exception as error:
+            self.diagnostics.request(time.monotonic()-started, received, error)
+            raise
+        self.diagnostics.request(time.monotonic()-started, received)
+        return payload
 
     def info(self):
         try:
@@ -233,6 +249,10 @@ class Client:
                     stream.get("encoding") != "rle565"):
                 raise ProtocolError("The fast screen configuration is invalid.")
             self.stream_rows = stream["max_rows"]
+        stats = info.get('stream_stats')
+        self.stream_stats_supported = stats is not None
+        if stats is not None and stats != dict(command=9, action=0, layout='STS1', bytes=64):
+            raise ProtocolError('The stream statistics configuration is invalid.')
         inputs = info.get('input')
         self.input_supported = False
         self.reported_key_ack = False
@@ -245,7 +265,8 @@ class Client:
             if inputs.get('key_ack') not in (None, 'reported-v1'):
                 raise ProtocolError('The key acknowledgement format is not supported.')
             self.reported_key_ack = inputs.get('key_ack') == 'reported-v1'
-        self.fast_modifiers = info.get('build') in ('background-r9-bounded-follow', 'background-r10-input-ready', 'background-r11-input-ack') or info.get('source') == 'simulator'
+        self.fast_modifiers = info.get('build') in ('background-r9-bounded-follow', 'background-r10-input-ready',
+            'background-r11-input-ack', 'background-r12-usb-pllsai', 'background-r19-minimal-opt', 'background-r20-resilient', 'background-r21-usb-optin', 'background-r22-usb-english', 'background-r23-idle-fastpath') or info.get('source') == 'simulator'
         return info
 
     def queue_input(self, keys, wheel1=0, wheel2=0):

@@ -1,0 +1,194 @@
+{
+  "format": "DS100-RLE7-PATCH-1",
+  "license": "GPL-3.0-only for the project patch and appended code. Vendor base rights remain unchanged.",
+  "build": "background-pc-rle7",
+  "base_sha256": "5030073c8ffe006d3727e4c13b80ca4aa89c3898a539ae7d4e4a2bf8bb216776",
+  "base_size": 427752,
+  "target_sha256": "23fa1a0fe59254cc1acc3e6591fd0849d432f62136166651be3f5d63496ec13e",
+  "target_size": 457344,
+  "payload_file": "rle7-payload.bin",
+  "payload_sha256": "ec17ab6457a49a3d7e0a1a250ab6b9ca7aa45dc31323a8e67da75e80cdd9a1b4",
+  "changed_original_bytes": 119,
+  "edits": [
+    {
+      "offset": 782,
+      "before": "00",
+      "after": "6e"
+    },
+    {
+      "offset": 784,
+      "before": "0cf8",
+      "after": "e3fb"
+    },
+    {
+      "offset": 18640,
+      "before": "30f00bfd",
+      "after": "00bf00bf"
+    },
+    {
+      "offset": 19344,
+      "before": "22",
+      "after": "69"
+    },
+    {
+      "offset": 19346,
+      "before": "19f8",
+      "after": "72ff"
+    },
+    {
+      "offset": 19684,
+      "before": "21",
+      "after": "69"
+    },
+    {
+      "offset": 19686,
+      "before": "35ff",
+      "after": "d2fe"
+    },
+    {
+      "offset": 28508,
+      "before": "fef715fa",
+      "after": "67f0aafd"
+    },
+    {
+      "offset": 28526,
+      "before": "c9698847",
+      "after": "67f08ffc"
+    },
+    {
+      "offset": 65826,
+      "before": "d54a0b68",
+      "after": "5ef0f3bb"
+    },
+    {
+      "offset": 132480,
+      "before": "10b582b0",
+      "after": "48f08cbb"
+    },
+    {
+      "offset": 132818,
+      "before": "14f00afe",
+      "after": "00bf00bf"
+    },
+    {
+      "offset": 154324,
+      "before": "70b5404c",
+      "after": "42f0fcbe"
+    },
+    {
+      "offset": 182754,
+      "before": "f8b4ec4a",
+      "after": "42f05db8"
+    },
+    {
+      "offset": 183480,
+      "before": "10b51446",
+      "after": "41f0a2be"
+    },
+    {
+      "offset": 185032,
+      "before": "70b5ff4e",
+      "after": "41f0ccbb"
+    },
+    {
+      "offset": 185890,
+      "before": "2de9f04f",
+      "after": "41f0f7b9"
+    },
+    {
+      "offset": 185992,
+      "before": "2de9ff4f",
+      "after": "41f0ceb9"
+    },
+    {
+      "offset": 186944,
+      "before": "d5f7a7fe",
+      "after": "3ff0a8fd"
+    },
+    {
+      "offset": 187962,
+      "before": "10",
+      "after": "3f"
+    },
+    {
+      "offset": 187964,
+      "before": "efb8",
+      "after": "c7bb"
+    },
+    {
+      "offset": 188022,
+      "before": "d6f75ef9",
+      "after": "3ff0e1fb"
+    },
+    {
+      "offset": 190482,
+      "before": "2de9f047",
+      "after": "40f09db8"
+    },
+    {
+      "offset": 190638,
+      "before": "d4f76bbf",
+      "after": "3ef0a9be"
+    },
+    {
+      "offset": 190892,
+      "before": "d4f7ec",
+      "after": "3ef02a"
+    },
+    {
+      "offset": 191454,
+      "before": "08467047",
+      "after": "3ff079be"
+    },
+    {
+      "offset": 217660,
+      "before": "5e4910b5",
+      "after": "33f024bd"
+    },
+    {
+      "offset": 217668,
+      "before": "f0f79efc",
+      "after": "00bf00bf"
+    },
+    {
+      "offset": 217794,
+      "before": "cdf7bbfd",
+      "after": "33f047fb"
+    },
+    {
+      "offset": 217834,
+      "before": "3348",
+      "after": "7047"
+    },
+    {
+      "offset": 217986,
+      "before": "fdf7e6fc",
+      "after": "33f003fb"
+    },
+    {
+      "offset": 217992,
+      "before": "cdf758fd",
+      "after": "33f0e4fa"
+    },
+    {
+      "offset": 218230,
+      "before": "2de9f14f",
+      "after": "33f0c3b9"
+    },
+    {
+      "offset": 218334,
+      "before": "6bd0",
+      "after": "00bf"
+    },
+    {
+      "offset": 254012,
+      "before": "70b50e46",
+      "after": "30f0febc"
+    },
+    {
+      "offset": 254096,
+      "before": "70b50d46",
+      "after": "30f0debc"
+    }
+  ]
+}

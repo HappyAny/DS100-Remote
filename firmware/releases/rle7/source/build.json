@@ -1,0 +1,1132 @@
+{
+  "sources_sha256": {
+    "experiments/acquisition-segments/hooks.S": "706586b7f31b21a89a11791ab5e2239e245b8c11fffd9ba3cc5be983e609373e",
+    "experiments/acquisition-segments/link.ld": "0bf4936c0102b10563c57b9aacfdd2872ea616586207e5a23e4e1d5dccfc48ae",
+    "experiments/acquisition-segments/timing.c": "ab96f6c5788b8b9c3518aef744f13777735845fe108c28f2cc2972ae64943332",
+    "experiments/acquisition-segments/timing.h": "ee8fcd5eebe526a33b2ae74dfae9b29f7c03f0611f5dfdc5a3919f9f7411c517",
+    "experiments/acquisition-timing/hooks.S": "7eae3cb3a4836ff5635cf044b4765628d63a3a50ca46b37770e5ebf3d7400895",
+    "experiments/acquisition-timing/link.ld": "f98275caaf22e502163d6b1608ea0b20662659dd93b46d64f13043c391d087ac",
+    "experiments/acquisition-timing/timing.c": "ab697d0b98c831a8d1889c3cf58019a123fbdb17d1d3094670e10a2eb8264faa",
+    "experiments/baseline-prefetch/dispatch.S": "206f7612cc9df772ea6e37c943f800df22c8c74206029cafc4da4bb220475040",
+    "experiments/baseline-prefetch/link.ld": "6ec835ce3d64ba0eeff358e59d4ae11f73d772143eb817acf6ed810d9a88d018",
+    "experiments/baseline-prefetch/prefetch.c": "8f666068b5f63a850ed51f432ea6f9fd6c20535f218cc1e43eee9b9883bc3886",
+    "experiments/baseline-row-read/link.ld": "56c0229dddd5c90b58b57002e790072be7c5f9c2c2170e97a444b9bbb86d1745",
+    "experiments/baseline-row-read/row.c": "2d3228fb4f3afd5c99d90da9cb7caece0be43f3cdd2aeea43732f248228b1a69",
+    "experiments/boot-remote/control.c": "28ace318d2cbe0c694041a9c14dbbb934cba856ee64831213afc37f71f19dc58",
+    "experiments/boot-remote/dispatch.S": "00165e13ae3dfafea8f94c91bf096023f4db669d505109c64ec1e0fb4e2608bb",
+    "experiments/boot-remote/layout.h": "41cfbb7ec87419b515b2cb2733c6951b5051ec501b6940ea928634afc5a8ec45",
+    "experiments/boot-remote/link.ld": "613cd87ca3b65f4c3d8056cfa96fe4351ee525fbf401076a32ad1823467fa1ac",
+    "experiments/draw-stream/clear_trampoline.S": "28cb3991dc7345e09226a6b464d40e4b223d4ca1d235bc4e51777cd1c9feef08",
+    "experiments/draw-stream/draw_queue.h": "5d1599e84acbde5fc067a2df8028ac1aeebee6dee94566e884a3c6fd83fd7c07",
+    "experiments/draw-stream/fast_crc.c": "38d8b19c30aabc7d5b20deea0cc10788a98f51e116ffd6fa1a8fb9526b77f15a",
+    "experiments/draw-stream/native_stream.h": "19552d74998304c9f02732911df05782570e835523b2ae20418673f12524e1bc",
+    "experiments/draw-stream/remote_fast_crc.c": "0e16c180af34b65fe1647cac902405faa6f6c1b590a11c1b465432f8721d5f38",
+    "experiments/foreground-timing/hooks.S": "4699fe0a0135fbbae6225932629bc844d638c09b552ad383c9617fced6d44b8f",
+    "experiments/foreground-timing/link.ld": "5ef5c8eabe803b32971df22f4da4ec96beac1134c7300445c2cfdffa54b01915",
+    "experiments/foreground-timing/timing.c": "6202559dfbb0d1a09179b04f67583f390ece99f23ee04482940bf2c1e1a377dd",
+    "experiments/foreground-timing/timing.h": "b86c5b8c4358562ea74e5f504de061f04c45b971365f4f610bbf07806ea77d58",
+    "experiments/hardware-follow/hooks_follow.c": "bbb84138b1cc128f09c04c42389400a20e983529915d86352b2ff1ad861f3327",
+    "experiments/idle-fastpath/dispatch.S": "e997f91122c0beffcfe04b0ce476951007efba3128751f7701e5fcf90c930e19",
+    "experiments/idle-fastpath/native.c": "05061239feffaf360f14d2db8303a29445e306c5a4a45910e8c32e262f31fe85",
+    "experiments/idle-fastpath/profile.c": "c105f97684864546bfe4fac38648f5d682133a06c17c2361228ac75ced1ab9c0",
+    "experiments/idle-fastpath/profile_base.c": "15e6c07265f57cf313d96ce3bd0ad91e913ba656e196b18f6dff8fb5d3d8bef4",
+    "experiments/idle-fastpath/screen.c": "4b7327b209fe76ac930d119a3e0a9a570d0dae20d805822adec833be765a8549",
+    "experiments/input-ack/input_ack.c": "924228fc8170d6072a359b85370df6da10f7e0e13452c37add69cebd6493727e",
+    "experiments/minimal-opt/draw_queue.c": "bcda6d2513678ee06e92d8ac99bf78492e130af4fdcd6931e128cf52450074a8",
+    "experiments/minimal-opt/pixel_dispatch.S": "026ea7dfa223d6ee3769d58fe64a5bd07bd1cfc1fd7a70ac654cf053779fe86d",
+    "experiments/native-rearm-timing/hooks.S": "5e2df1cb67e9644265d1fe506d2729f8a55f2055a39f5d1402f6f56a8cae15e7",
+    "experiments/native-rearm-timing/link.ld": "a997e9d2ad28e383d2d59c1130f000983edbefe6b0c832d2da8453c58a66bca5",
+    "experiments/native-rearm-timing/timing.c": "d61286138b0d12ede4d82ca5ad2588880606c2f6b1fcb55b1e57e3cf983e9d7b",
+    "experiments/peak-gap/dispatch.S": "93a606078668aa496a0c2122ede5369ec1e27f86bada1b552e6df282b3311b45",
+    "experiments/peak-gap/link.ld": "8ed25b43a890b6ba9f5797725712ba25ee7e2eb2ce9880fcb8dd5c666b80378f",
+    "experiments/peak-gap/peak.h": "5561a3259201262998e65f03a9c3510ce19b54b336865d58d0d660b3931fb8ca",
+    "experiments/peak-gap/timing.c": "fd9061844c1c81b71ca97d56e59c7c304142f00d0bf1cdd0d88384162370e02a",
+    "experiments/steady-writer/dispatch.S": "f50f4b73488a6cbe36283b9bc02f4a69d58ca5aaddba8061d0f954945afb7e66",
+    "experiments/steady-writer/link.ld": "eaceecaf9bb0c0b63f079215ad36e6224847db4e9be8729fb6b6d43ecb57365a",
+    "experiments/usb-optin-english/menu.c": "c3e41e43de52afdd62b87e53af34d1b52cd6afac79189180f439f63fdf2af5d6",
+    "experiments/usb-optin/control.c": "4777e75d4c0ba341b05e0aadb89aa4d8d6e1c693c0c1dc6be75352a7f280aeb0",
+    "experiments/usb-optin/hooks.c": "f239f09ab9f8ee707b839cd09f3028ffeadaac8307858992746c8a139fd8bdc8",
+    "experiments/usb-optin/optin.h": "6c53e3122965c85b8556f5dccdc89c8f05d60f59c7fc69e821ba0841c77e76dc",
+    "experiments/usb-optin/patch.ld": "b225ff7c4cc6f12e1d07978611f2a75584d35340f5c15493ea56baf3a79588bd",
+    "experiments/usb-optin/prefs.c": "5fa127fe91271a5b9024a23ab59f619d03dc6cd56c4a184df7a57e3d384b1476",
+    "experiments/usb-pllsai/clock_pllsai.c": "ca36110e8a8db0c301ec2d1debfc07bc59e9e0d2608f72feb3db13e175afaf01",
+    "experiments/waveform-span/dispatch.S": "c70bc8137e32bdd2660713b5284aa302dbfe6c2e77b1b4705fbf47f9466283be",
+    "experiments/waveform-span/link.ld": "5c85c4b179d596133708ba814b231106055b0b70e7ba4e9df5befef748be05d5",
+    "experiments/waveform-span/span.c": "249282eeda3c1568d2fd040788d0ee13a37c6c002391e05353ea4561829c6857",
+    "experiments/waveform-span/span.h": "5b072e9e1c233627fbd5df0966ba445e342c29e4d28e4da6f936a5a0e71caf12",
+    "experiments/waveform-writer/link.ld": "7e71d62df008324ced61382511b5929d8f04fb1a0e964310c563b70fff83381a",
+    "experiments/waveform-writer/select.S": "ec403e08f7fd527bb392df60f6b844ec773f74272aa8f0c51b6921dd1b2d68e4",
+    "experiments/waveform-writer/span.c": "3ab7305eb2c909573895c075a592094d2e1dd1bd8874957931e4ab7caf84a2a8",
+    "experiments/waveform-writer/writer.h": "067a87d21e97d6064ab9a5fcf0526edd20b678c560d5ef514a6047103227fa0c",
+    "firmware/ds100_remote.c": "db097d9214b5d0cc218b073f6c9529caaff1168901e5ab09d078fb3a5043401b",
+    "firmware/ds100_remote.h": "c1a220144707aa75e3125877f41d450a66b0878092b6e77df9abd55512bc04fa",
+    "firmware/ds100_screen_stream.c": "c2b36c016e51a1c01878758c3581550460f49f3bed4d2a4f81e99c31ef1ea895",
+    "firmware/v48_draw_profile.c": "4be1b07a821be94684d21766da7544d9cadd36fb60037a93012161c61724a49e",
+    "firmware/v48_profile_trampoline.S": "89b4ba37f1c3afa715900187346715fdd49f1b7ad8b0659c359e87f6d3b04452",
+    "firmware/v48_trampoline.S": "2535769e32f496c5f840d11f74b040c45ce35bcad91df831f2bec04fc0371184"
+  },
+  "stages": [
+    {
+      "name": "idle-fastpath",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-fno-pie",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Os",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DDS100_BACKGROUND_USB=1",
+        "-DDS100_DRAW_PROFILE=1",
+        "-DDS100_CONTROLS=1"
+      ],
+      "sources": [
+        "experiments/draw-stream/remote_fast_crc.c",
+        "experiments/draw-stream/fast_crc.c",
+        "firmware/ds100_screen_stream.c",
+        "firmware/v48_trampoline.S",
+        "firmware/v48_profile_trampoline.S",
+        "experiments/usb-optin/control.c",
+        "experiments/usb-optin/prefs.c",
+        "experiments/usb-optin-english/menu.c",
+        "experiments/minimal-opt/draw_queue.c",
+        "experiments/minimal-opt/pixel_dispatch.S",
+        "experiments/idle-fastpath/native.c",
+        "experiments/idle-fastpath/profile.c",
+        "experiments/usb-optin/hooks.c",
+        "experiments/usb-pllsai/clock_pllsai.c",
+        "experiments/idle-fastpath/screen.c",
+        "experiments/draw-stream/clear_trampoline.S",
+        "experiments/idle-fastpath/dispatch.S"
+      ],
+      "separate_objects": true,
+      "linker": "experiments/usb-optin/patch.ld",
+      "linker_flags": [
+        "-Wl,--gc-sections"
+      ],
+      "append_offset": 428032,
+      "payload_size": 16144,
+      "payload_sha256": "132c54ffa37957bd24727928aad6d385165a4aaf62583aa176bb2783dffa2f24",
+      "image_size": 444288,
+      "image_sha256": "8542809aff372cac86c5cbf0e76e47a780128f5b41364510130b94e1aad4e61f",
+      "edits": [
+        {
+          "offset": 782,
+          "before": "00f00cf8",
+          "after": "68f0e3fb"
+        },
+        {
+          "offset": 18640,
+          "before": "30f00bfd",
+          "after": "00bf00bf"
+        },
+        {
+          "offset": 19344,
+          "before": "22f019f8",
+          "after": "63f0b6ff"
+        },
+        {
+          "offset": 19684,
+          "before": "21f035ff",
+          "after": "63f054ff"
+        },
+        {
+          "offset": 28508,
+          "before": "fef715fa",
+          "after": "61f0a4fc"
+        },
+        {
+          "offset": 132480,
+          "before": "10b582b0",
+          "after": "48f08cbb"
+        },
+        {
+          "offset": 132818,
+          "before": "14f00afe",
+          "after": "00bf00bf"
+        },
+        {
+          "offset": 154324,
+          "before": "70b5404c",
+          "after": "42f0fcbe"
+        },
+        {
+          "offset": 182754,
+          "before": "f8b4ec4a",
+          "after": "3cf0ddb9"
+        },
+        {
+          "offset": 183480,
+          "before": "10b51446",
+          "after": "3bf0a0be"
+        },
+        {
+          "offset": 185032,
+          "before": "70b5ff4e",
+          "after": "3bf054bd"
+        },
+        {
+          "offset": 185890,
+          "before": "2de9f04f",
+          "after": "3bf001ba"
+        },
+        {
+          "offset": 185992,
+          "before": "2de9ff4f",
+          "after": "3bf0e4b9"
+        },
+        {
+          "offset": 217660,
+          "before": "5e4910b5",
+          "after": "33f024bd"
+        },
+        {
+          "offset": 217668,
+          "before": "f0f79efc",
+          "after": "00bf00bf"
+        },
+        {
+          "offset": 217794,
+          "before": "cdf7bbfd",
+          "after": "33f047fb"
+        },
+        {
+          "offset": 217834,
+          "before": "3348",
+          "after": "7047"
+        },
+        {
+          "offset": 217986,
+          "before": "fdf7e6fc",
+          "after": "33f003fb"
+        },
+        {
+          "offset": 217992,
+          "before": "cdf758fd",
+          "after": "33f0e4fa"
+        },
+        {
+          "offset": 218230,
+          "before": "2de9f14f",
+          "after": "33f0c3b9"
+        },
+        {
+          "offset": 218334,
+          "before": "6bd0",
+          "after": "00bf"
+        },
+        {
+          "offset": 254012,
+          "before": "70b50e46",
+          "after": "2af020bd"
+        },
+        {
+          "offset": 254096,
+          "before": "70b50d46",
+          "after": "2af00cbd"
+        }
+      ]
+    },
+    {
+      "name": "acquisition-timing",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/acquisition-timing/timing.c",
+        "experiments/acquisition-timing/hooks.S"
+      ],
+      "linker": "experiments/acquisition-timing/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_capture_state=0x2002ffbc",
+        "-Wl,--defsym=ds100_original_poll=0x80788a9"
+      ],
+      "append_offset": 444288,
+      "payload_size": 1164,
+      "payload_sha256": "ef1b6b873e0481134141f1d0e3b3faa202b147a5f2a944299cf6826867434edf",
+      "image_size": 445568,
+      "image_sha256": "edd91f73dad5a562e2a30a015f55be9ce1c2d1cdb77fcbb948066ae2a531be0f",
+      "edits": [
+        {
+          "offset": 28508,
+          "before": "61f0a4fc",
+          "after": "65f0cafd"
+        },
+        {
+          "offset": 186944,
+          "before": "d5f7a7fe",
+          "after": "3ff074f8"
+        },
+        {
+          "offset": 187962,
+          "before": "10f0efb8",
+          "after": "3ef093be"
+        },
+        {
+          "offset": 188022,
+          "before": "d6f75ef9",
+          "after": "3ef0adfe"
+        },
+        {
+          "offset": 190638,
+          "before": "d4f76bbf",
+          "after": "3ef075b9"
+        },
+        {
+          "offset": 190892,
+          "before": "d4f7ecbe",
+          "after": "3ef0f6b8"
+        },
+        {
+          "offset": 437956,
+          "before": "2de9f041",
+          "after": "01f032bd"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d7232332d69646c652d666173747061746800",
+          "after": "6261636b67726f756e642d6163712d74696d696e670000000000000000"
+        },
+        {
+          "offset": 442222,
+          "before": "2c22647261775f70726f66696c65223a7b22636f6d6d616e64223a362c226c61796f7574223a22647261772d70726f66696c652d7631227d",
+          "after": "2c22636170747572655f74696d696e67223a7b22636f6d6d616e64223a362c226c61796f7574223a2241435431227d202020202020202020"
+        }
+      ]
+    },
+    {
+      "name": "baseline-row-read",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/baseline-row-read/row.c"
+      ],
+      "linker": "experiments/baseline-row-read/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_original_queue=0x807a5b9",
+        "-Wl,--defsym=ds100_original_direction=0x2002ffb0"
+      ],
+      "append_offset": 445568,
+      "payload_size": 796,
+      "payload_sha256": "c18afbe7d4fc79e2f3eeb900bb89ff37d895f9d637555ef7754a901464955410",
+      "image_size": 446464,
+      "image_sha256": "f304714087da10fc61bb49b2183cdb14ced6b809ed9f5f669bf798e2cb3430d0",
+      "edits": [
+        {
+          "offset": 435500,
+          "before": "f8b5074f",
+          "after": "02f0dcbb"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d6163712d74696d696e6700",
+          "after": "6261636b67726f756e642d726f772d72656164000000"
+        }
+      ]
+    },
+    {
+      "name": "baseline-row-scan",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [],
+      "linker": null,
+      "linker_flags": [],
+      "append_offset": 446464,
+      "payload_size": 0,
+      "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image_size": 446464,
+      "image_sha256": "77d4e65864881f6d348a2b04777d8b1b6f3272812f4c203e04b7d7035e9529b4",
+      "edits": [
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d726f772d7265616400",
+          "after": "6261636b67726f756e642d726f772d7363616e00"
+        },
+        {
+          "offset": 445744,
+          "before": "a02b",
+          "after": "202b"
+        },
+        {
+          "offset": 445764,
+          "before": "a029",
+          "after": "2029"
+        }
+      ]
+    },
+    {
+      "name": "acquisition-segments",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/acquisition-segments/timing.c",
+        "experiments/acquisition-segments/hooks.S"
+      ],
+      "linker": "experiments/acquisition-segments/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_capture_state=0x2002ffbc"
+      ],
+      "append_offset": 446464,
+      "payload_size": 2356,
+      "payload_sha256": "b5b0b64a255b8413cdd7470570cd40ca1a7e56767a564da20ba21055775ae27d",
+      "image_size": 448896,
+      "image_sha256": "740f9dda68c4d3d320891a6d675a7481dd8c546a24e12af0d2c38bbd1be4dd14",
+      "edits": [
+        {
+          "offset": 28508,
+          "before": "65f0cafd",
+          "after": "66f0fefa"
+        },
+        {
+          "offset": 186944,
+          "before": "3ff074f8",
+          "after": "3ff0a8fd"
+        },
+        {
+          "offset": 187962,
+          "before": "3ef093be",
+          "after": "3ff0c7bb"
+        },
+        {
+          "offset": 188022,
+          "before": "3ef0adfe",
+          "after": "3ff0e1fb"
+        },
+        {
+          "offset": 190638,
+          "before": "3ef075b9",
+          "after": "3ef0a9be"
+        },
+        {
+          "offset": 190892,
+          "before": "3ef0f6b8",
+          "after": "3ef02abe"
+        },
+        {
+          "offset": 428218,
+          "before": "02f0a1fb",
+          "after": "05f001f8"
+        },
+        {
+          "offset": 428230,
+          "before": "01f057fe",
+          "after": "04f0d5fe"
+        },
+        {
+          "offset": 430342,
+          "before": "022e",
+          "after": "032e"
+        },
+        {
+          "offset": 436760,
+          "before": "fff796ff",
+          "after": "02f022ff"
+        },
+        {
+          "offset": 436840,
+          "before": "fff76eff",
+          "after": "02f0fafe"
+        },
+        {
+          "offset": 436986,
+          "before": "fff725ff",
+          "after": "02f0b1fe"
+        },
+        {
+          "offset": 437220,
+          "before": "fff7b0fe",
+          "after": "02f03cfe"
+        },
+        {
+          "offset": 437230,
+          "before": "fff792fa",
+          "after": "02f0f3fd"
+        },
+        {
+          "offset": 437956,
+          "before": "01f032bd",
+          "after": "02f0fcb9"
+        },
+        {
+          "offset": 438080,
+          "before": "fff75cfd",
+          "after": "02f0b6fb"
+        },
+        {
+          "offset": 438118,
+          "before": "fff771fd",
+          "after": "02f0c5fb"
+        },
+        {
+          "offset": 438164,
+          "before": "fff7f4fd",
+          "after": "02f0f8fb"
+        },
+        {
+          "offset": 438202,
+          "before": "fff789fd",
+          "after": "02f0c3fb"
+        },
+        {
+          "offset": 438234,
+          "before": "fff779fd",
+          "after": "02f0b3fb"
+        },
+        {
+          "offset": 438260,
+          "before": "fff7a1f8",
+          "after": "02f012fc"
+        },
+        {
+          "offset": 438620,
+          "before": "fff750ff",
+          "after": "02f0b0fb"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d726f772d7363616e00",
+          "after": "6261636b67726f756e642d6163712d7365670000"
+        },
+        {
+          "offset": 442263,
+          "before": "41435431",
+          "after": "41435432"
+        }
+      ]
+    },
+    {
+      "name": "waveform-span",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/waveform-span/span.c",
+        "experiments/waveform-span/dispatch.S"
+      ],
+      "linker": "experiments/waveform-span/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_reviewed_reserve=0x80798f7",
+        "-Wl,--defsym=ds100_reviewed_q8=0x8079935",
+        "-Wl,--defsym=ds100_reviewed_q16=0x8079955"
+      ],
+      "append_offset": 448896,
+      "payload_size": 700,
+      "payload_sha256": "1e2bfb4f92ff231e1f749113b3bc056c2d76d2b1bbf6ab9b935525f122ac574b",
+      "image_size": 449664,
+      "image_sha256": "0553c429e04e65e0875b5b40be98fb9105b88786f2bf9f17591a7e7f197c242d",
+      "edits": [
+        {
+          "offset": 433672,
+          "before": "2de9f04f",
+          "after": "03f0fcbe"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d6163712d73656700",
+          "after": "6261636b67726f756e642d6163712d726c6500"
+        }
+      ]
+    },
+    {
+      "name": "baseline-prefetch",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/baseline-prefetch/prefetch.c",
+        "experiments/baseline-prefetch/dispatch.S"
+      ],
+      "linker": "experiments/baseline-prefetch/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_prefetch_queue=0x807a5b9",
+        "-Wl,--defsym=ds100_prefetch_original_hold_tick=0x807d675",
+        "-Wl,--defsym=ds100_prefetch_original_packet=0x807a175",
+        "-Wl,--defsym=ds100_prefetch_read_row=0x807a52d",
+        "-Wl,--defsym=ds100_prefetch_timing_switch=0x807d16d"
+      ],
+      "append_offset": 449664,
+      "payload_size": 356,
+      "payload_sha256": "13b249d35d55d54c54620c76c984a503e9fb617ee59bc10d67336bcd9ba1c05e",
+      "image_size": 450048,
+      "image_sha256": "4e35b868af132c3f6d5dafcb5f9695266d439794e731c9637748f1e5431ec397",
+      "edits": [
+        {
+          "offset": 428230,
+          "before": "04f0d5fe",
+          "after": "05f0dbf9"
+        },
+        {
+          "offset": 436194,
+          "before": "fff7c7fc",
+          "after": "03f0effa"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d6163712d726c6500",
+          "after": "6261636b67726f756e642d6163712d70726500"
+        }
+      ]
+    },
+    {
+      "name": "native-rearm-timing",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/native-rearm-timing/timing.c",
+        "experiments/native-rearm-timing/hooks.S"
+      ],
+      "linker": "experiments/native-rearm-timing/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_capture_state=0x2002ffbc",
+        "-Wl,--defsym=ds100_native_original_event=0x807d1d9",
+        "-Wl,--defsym=ds100_native_original_command=0x807d2c1"
+      ],
+      "append_offset": 450048,
+      "payload_size": 524,
+      "payload_sha256": "1bf42efe479ae8db928dbe8ab58358076daf1e7c60a41d487460fd1fa8a9259e",
+      "image_size": 450688,
+      "image_sha256": "9b05d0b999cfa398caf17cc2b0d2940bce1652ef4c11c1bfbef34ca92f7e960c",
+      "edits": [
+        {
+          "offset": 65826,
+          "before": "d54a0b68",
+          "after": "5df017bf"
+        },
+        {
+          "offset": 190482,
+          "before": "2de9f047",
+          "after": "3ff0bfbb"
+        },
+        {
+          "offset": 190638,
+          "before": "3ef0a9be",
+          "after": "3ff08fbb"
+        },
+        {
+          "offset": 190892,
+          "before": "3ef02abe",
+          "after": "3ff010bb"
+        },
+        {
+          "offset": 437956,
+          "before": "02f0fcb9",
+          "after": "03f006b8"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d6163712d70726500",
+          "after": "6261636b67726f756e642d6163712d6e617400"
+        },
+        {
+          "offset": 442263,
+          "before": "41435432",
+          "after": "41435433"
+        }
+      ]
+    },
+    {
+      "name": "foreground-timing",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/foreground-timing/timing.c",
+        "experiments/foreground-timing/hooks.S"
+      ],
+      "linker": "experiments/foreground-timing/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_capture_state=0x2002ffbc",
+        "-Wl,--defsym=ds100_auto_usb=0x80794b9",
+        "-Wl,--defsym=ds100_stream_tick=0x807a579",
+        "-Wl,--defsym=ds100_profile_pass=0x807b835",
+        "-Wl,--defsym=ds100_native_dispatcher=0x801538b",
+        "-Wl,--defsym=ds100_stream_holds_render=0x807a5a1"
+      ],
+      "append_offset": 450688,
+      "payload_size": 2336,
+      "payload_sha256": "5a71c51ca675fab2f1c8e66f26770434dd54252355640f492b3bc9038f8260e3",
+      "image_size": 453120,
+      "image_sha256": "616602d5820e5b3524546950705428d4a2399ac4d69f4f27ff6fafc1eda445e4",
+      "edits": [
+        {
+          "offset": 28508,
+          "before": "66f0fefa",
+          "after": "67f07afc"
+        },
+        {
+          "offset": 28526,
+          "before": "c9698847",
+          "after": "67f08ffc"
+        },
+        {
+          "offset": 65826,
+          "before": "5df017bf",
+          "after": "5ef0f3bb"
+        },
+        {
+          "offset": 190482,
+          "before": "3ff0bfbb",
+          "after": "40f09db8"
+        },
+        {
+          "offset": 190638,
+          "before": "3ff08fbb",
+          "after": "3ef0a9be"
+        },
+        {
+          "offset": 190892,
+          "before": "3ff010bb",
+          "after": "3ef02abe"
+        },
+        {
+          "offset": 191454,
+          "before": "08467047",
+          "after": "3ff079be"
+        },
+        {
+          "offset": 430342,
+          "before": "032e",
+          "after": "042e"
+        },
+        {
+          "offset": 437956,
+          "before": "03f006b8",
+          "after": "03f058bb"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d6163712d6e617400",
+          "after": "6261636b67726f756e642d6163712d66673400"
+        },
+        {
+          "offset": 442263,
+          "before": "41435433",
+          "after": "41435434"
+        },
+        {
+          "offset": 446936,
+          "before": "2de9f843",
+          "after": "01f018b8"
+        }
+      ]
+    },
+    {
+      "name": "boot-remote",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/boot-remote/dispatch.S",
+        "experiments/boot-remote/control.c"
+      ],
+      "linker": "experiments/boot-remote/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_boot_control=0x2002ffac",
+        "-Wl,--defsym=ds100_existing_controls_init=0x8078ad9",
+        "-Wl,--defsym=ds100_native_dispatcher=0x801538b",
+        "-Wl,--defsym=ds100_begin_usb=0x80792c1",
+        "-Wl,--defsym=ds100_service_pending_request=0x807b001",
+        "-Wl,--defsym=ds100_menu_label_text=0x80796ed",
+        "-Wl,--defsym=ds100_optin_pref_load=0x8079599",
+        "-Wl,--defsym=ds100_optin_pref_save=0x8079655",
+        "-Wl,--defsym=ds100_native_point=0x8079275",
+        "-Wl,--defsym=ds100_native_rect=0x8079281",
+        "-Wl,--defsym=ds100_native_bitmap=0x807928d",
+        "-Wl,--defsym=ds100_native_span_a=0x8079299",
+        "-Wl,--defsym=ds100_native_span_b=0x80792a5",
+        "-Wl,--defsym=ds100_native_clear=0x807b815",
+        "-Wl,--defsym=ds100_native_keys=0x8036bc7",
+        "-Wl,--defsym=ds100_native_wheels=0x8036b53",
+        "-Wl,--defsym=ds100_native_scan=0x807b825",
+        "-Wl,--defsym=ds100_remote_point=0x80789fd",
+        "-Wl,--defsym=ds100_remote_rect=0x8078a29",
+        "-Wl,--defsym=ds100_remote_bitmap=0x8078a55",
+        "-Wl,--defsym=ds100_remote_span_a=0x8078a81",
+        "-Wl,--defsym=ds100_remote_span_b=0x8078aad",
+        "-Wl,--defsym=ds100_remote_clear=0x8078d75",
+        "-Wl,--defsym=ds100_remote_keys=0x8078b01",
+        "-Wl,--defsym=ds100_remote_wheels=0x8078b91",
+        "-Wl,--defsym=ds100_remote_scan=0x8078da1",
+        "-Wl,--defsym=ds100_remote_poll=0x807e855"
+      ],
+      "append_offset": 453120,
+      "payload_size": 1024,
+      "payload_sha256": "f54fd22aa7c007de1672da19899eb113426c51ede59c6d7f11d63de0d5cfedac",
+      "image_size": 454144,
+      "image_sha256": "546f3b5e26f77d390ab0eed52b036ef01a9512d5141a57990add730e028d42ed",
+      "edits": [
+        {
+          "offset": 782,
+          "before": "68f0e3fb",
+          "after": "6ef0e3fb"
+        },
+        {
+          "offset": 19344,
+          "before": "63f0b6ff",
+          "after": "69f072ff"
+        },
+        {
+          "offset": 19684,
+          "before": "63f054ff",
+          "after": "69f0d2fe"
+        },
+        {
+          "offset": 28508,
+          "before": "67f07afc",
+          "after": "67f0aafd"
+        },
+        {
+          "offset": 182754,
+          "before": "3cf0ddb9",
+          "after": "42f05db8"
+        },
+        {
+          "offset": 183480,
+          "before": "3bf0a0be",
+          "after": "41f0a2be"
+        },
+        {
+          "offset": 185032,
+          "before": "3bf054bd",
+          "after": "41f0ccbb"
+        },
+        {
+          "offset": 185890,
+          "before": "3bf001ba",
+          "after": "41f0f7b9"
+        },
+        {
+          "offset": 185992,
+          "before": "3bf0e4b9",
+          "after": "41f0ceb9"
+        },
+        {
+          "offset": 254012,
+          "before": "2af020bd",
+          "after": "30f0febc"
+        },
+        {
+          "offset": 254096,
+          "before": "2af00cbd",
+          "after": "30f0debc"
+        },
+        {
+          "offset": 431260,
+          "before": "014bd869",
+          "after": "05f028bb"
+        },
+        {
+          "offset": 431288,
+          "before": "10b50c4c",
+          "after": "05f022bb"
+        },
+        {
+          "offset": 431348,
+          "before": "70b5fff7",
+          "after": "05f02abb"
+        },
+        {
+          "offset": 432060,
+          "before": "70b50446",
+          "after": "05f0e8b9"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d6163712d66673400",
+          "after": "6261636b67726f756e642d70632d626f6f7400"
+        }
+      ]
+    },
+    {
+      "name": "boot-waveform-writer",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/waveform-writer/span.c",
+        "experiments/waveform-writer/select.S"
+      ],
+      "linker": "experiments/waveform-writer/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,-Ttext=0x807ee00",
+        "-Wl,--defsym=ds100_capture_state=0x2002ffbc",
+        "-Wl,--defsym=ds100_reviewed_reserve=0x80798f7"
+      ],
+      "append_offset": 454144,
+      "payload_size": 996,
+      "payload_sha256": "52cb5e16ea9fed8e43a9bac7f033c8ec51d59a866d5c8457bc6d32bd1d2370ec",
+      "image_size": 455168,
+      "image_sha256": "8068af9680cbfbd1807e83fbc93d9b3b26a1b379a3f9902fbb18ef03c6bd4200",
+      "edits": [
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d70632d626f6f7400",
+          "after": "6261636b67726f756e642d70632d726c653500"
+        },
+        {
+          "offset": 442263,
+          "before": "41435434",
+          "after": "41435435"
+        },
+        {
+          "offset": 449568,
+          "before": "fff7aefe",
+          "after": "01f0cefa"
+        },
+        {
+          "offset": 451718,
+          "before": "374b9b68",
+          "after": "00f01ab8"
+        },
+        {
+          "offset": 452680,
+          "before": "41435434",
+          "after": "41435435"
+        }
+      ]
+    },
+    {
+      "name": "peak-gap",
+      "compiler_flags": [
+        "-mfloat-abi=soft",
+        "-Os",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/peak-gap/timing.c",
+        "experiments/peak-gap/dispatch.S"
+      ],
+      "linker": "experiments/peak-gap/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_peak_state=0x2002ffbc",
+        "-Wl,--defsym=ds100_peak_queue=0x2002ffb8",
+        "-Wl,--defsym=ds100_prior_timing=0x807e579",
+        "-Wl,--defsym=ds100_prior_usb_tail=0x807e8c9",
+        "-Wl,--defsym=ds100_prior_row=0x807cce9",
+        "-Wl,--defsym=ds100_prior_wait=0x807d861",
+        "-Wl,--defsym=ds100_prior_writer=0x807f1c1",
+        "-Wl,--defsym=ds100_original_writer=0x807d981"
+      ],
+      "append_offset": 455168,
+      "payload_size": 1988,
+      "payload_sha256": "23df09fc1c0cc686c57a4f7d61066ff901655cf7e48cdd4569ff6850a9bc7e61",
+      "image_size": 457216,
+      "image_sha256": "2b18b4417fe30d37b49a77704062a631fae21add0317891150af67240f2ebf0e",
+      "edits": [
+        {
+          "offset": 430342,
+          "before": "042e",
+          "after": "072e"
+        },
+        {
+          "offset": 435500,
+          "before": "02f0dcbb",
+          "after": "05f0b2b8"
+        },
+        {
+          "offset": 436760,
+          "before": "02f022ff",
+          "after": "04f0a8ff"
+        },
+        {
+          "offset": 436840,
+          "before": "02f0fafe",
+          "after": "04f080ff"
+        },
+        {
+          "offset": 436986,
+          "before": "02f0b1fe",
+          "after": "04f037ff"
+        },
+        {
+          "offset": 437220,
+          "before": "02f03cfe",
+          "after": "04f0c2fe"
+        },
+        {
+          "offset": 437956,
+          "before": "03f058bb",
+          "after": "04f080bc"
+        },
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d70632d726c653500",
+          "after": "6261636b67726f756e642d70632d6761703600"
+        },
+        {
+          "offset": 449568,
+          "before": "01f0cefa",
+          "after": "01f07cfe"
+        },
+        {
+          "offset": 451084,
+          "before": "2de9f843",
+          "after": "01f056bb"
+        },
+        {
+          "offset": 451340,
+          "before": "2de9f041",
+          "after": "01f0e4ba"
+        },
+        {
+          "offset": 451472,
+          "before": "2de9f047",
+          "after": "01f0b0ba"
+        },
+        {
+          "offset": 451774,
+          "before": "00f003fa",
+          "after": "01f043fa"
+        }
+      ]
+    },
+    {
+      "name": "steady-writer",
+      "compiler_flags": [
+        "-DSTEADY_FIRST_FRAME=3",
+        "-DSTEADY_CORE_HZ=250000000"
+      ],
+      "separate_objects": false,
+      "sources": [
+        "experiments/steady-writer/dispatch.S"
+      ],
+      "linker": "experiments/steady-writer/link.ld",
+      "linker_flags": [
+        "-Wl,--build-id=none",
+        "-Wl,--defsym=ds100_steady_capture_flags=0x2002ffc4",
+        "-Wl,--defsym=ds100_steady_act5_writer=0x807ee01",
+        "-Wl,--defsym=ds100_steady_original_writer=0x807d981",
+        "-Wl,--defsym=ds100_steady_diagnostic_writer=0x807f91d",
+        "-Wl,--defsym=ds100_steady_count_after_mrs=0x807f069",
+        "-Wl,--defsym=ds100_steady_writer_success=0x807f1b3"
+      ],
+      "append_offset": 457216,
+      "payload_size": 124,
+      "payload_sha256": "87eb483614e195307920351327df453dd6758a6d9d5315185c9d5349ca999f5c",
+      "image_size": 457344,
+      "image_sha256": "23fa1a0fe59254cc1acc3e6591fd0849d432f62136166651be3f5d63496ec13e",
+      "edits": [
+        {
+          "offset": 442078,
+          "before": "6261636b67726f756e642d70632d6761703600",
+          "after": "6261636b67726f756e642d70632d726c653700"
+        },
+        {
+          "offset": 449568,
+          "before": "01f07cfe",
+          "after": "01f0eefe"
+        },
+        {
+          "offset": 454756,
+          "before": "eff31080",
+          "after": "00f0f4bc"
+        }
+      ]
+    }
+  ]
+}

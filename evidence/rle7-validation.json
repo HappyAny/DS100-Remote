@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-22",
+  "firmware": {
+    "build": "background-pc-rle7",
+    "sha256": "23fa1a0fe59254cc1acc3e6591fd0849d432f62136166651be3f5d63496ec13e",
+    "bytes": 457344
+  },
+  "client_version": "0.5.14.dev1",
+  "hardware": {
+    "units_tested": 1,
+    "revision": "2.4",
+    "bootloader": "4.0",
+    "lcd_id": "0x9488"
+  },
+  "research_regression_checks_passed": 1349,
+  "public_checkout_checks_passed": 279,
+  "source_record_sha256": "db90ed1f4c0d48b1a85c22d053545099b336347932d03ba296a755bf28252e9b",
+  "capture_gap_definition": "DMA stop to next native timer trigger gate",
+  "valid_timing_trials": 42,
+  "rejected_timing_trials": 0,
+  "unplanned_resyncs_during_timing": 0,
+  "timing_by_core": [
+    {
+      "core_hz": 250000000,
+      "timebase_ns_per_div": 40,
+      "steady_mirror_encoder_comparison": {
+        "original_encoder": {
+          "trials": 3,
+          "gap_mean_ms": 36.59,
+          "gap_max_ms": 40.12
+        },
+        "act5_comparison": {
+          "trials": 3,
+          "gap_mean_ms": 23.21,
+          "gap_max_ms": 36.45
+        },
+        "release_policy": {
+          "trials": 3,
+          "gap_mean_ms": 23.46,
+          "gap_max_ms": 36.54
+        }
+      }
+    },
+    {
+      "core_hz": 200000000,
+      "timebase_ns_per_div": 200,
+      "steady_mirror_encoder_comparison": {
+        "original_encoder": {
+          "trials": 3,
+          "gap_mean_ms": 10.92,
+          "gap_max_ms": 42.34
+        },
+        "act5_comparison": {
+          "trials": 3,
+          "gap_mean_ms": 7.2,
+          "gap_max_ms": 37.76
+        },
+        "release_policy": {
+          "trials": 3,
+          "gap_mean_ms": 10.71,
+          "gap_max_ms": 42.4
+        }
+      }
+    }
+  ],
+  "screen_comparison": {
+    "pixels": 153600,
+    "different_pixels": 0
+  },
+  "passive_mirror": {
+    "core_hz": 250000000,
+    "delivered_frames": 2257,
+    "waveform_changed_frames": 1601,
+    "resyncs": 0,
+    "seconds": 60.008,
+    "delivered_fps": 37.611,
+    "waveform_changed_fps": 26.68,
+    "longest_delivery_gap_ms": 52.255
+  },
+  "restored_settings_and_capture": true,
+  "user_file_hashes_unchanged": true,
+  "independent_trigger_loss_measured": false,
+  "absolute_timebase_error_measured": false
+}

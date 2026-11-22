@@ -155,7 +155,7 @@ def build_layout(window, screen_class, plot_class, auto_connect):
         'R9：正常界面直接接入、按键控制和菜单像素对照已实测。\n'
         '测试参数重启保留，未按 AUTO 的启动采集已实测。\n'
         '原始波形服务、绝对运行 / 停止未绑定。\n'
-        'USB 使用 168 MHz；测量准确性与最高采集模式未验证。\n'
+        '主频策略由连接的固件决定；测量准确性与最高采集模式未验证。\n'
         '演示模式使用生成数据，不代表实机性能。\n'
         '文件模式读取已保存的 CSV / BMP。程序不提供刷机操作。')
     info.addWidget(w.research, 1)
