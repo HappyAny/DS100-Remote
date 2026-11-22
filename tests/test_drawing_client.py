@@ -5,7 +5,8 @@ import json
 import struct
 import time
 import numpy as np
-from ds100.protocol import CDB, Client, DRAW_STREAM, INFO, SCREEN_READ, SCREEN, make_response
+import pytest
+from ds100.protocol import CDB, Client, DRAW_STREAM, INFO, INPUT_STATE, SCREEN_READ, SCREEN, make_response
 from ds100.drawing import PACKET
 from test_draw_queue import Sender, sender_library
 
@@ -18,15 +19,17 @@ class StreamTransport:
         self.force_overflow = False
         self.requests = []
 
+    def device_info(self):
+        return {'protocol': 1, 'source': 'simulator', 'screen_width': 480, 'screen_height': 320,
+                'capabilities': ['screen', 'input'],
+                'input': {'command': 8, 'keys': ['P', 'A', 'M', 'E'], 'wheels': 2, 'lease_ms': 600},
+                'draw_stream': {'command': 9, 'packet_bytes': 4096, 'format': 'DRW1', 'queue_bytes': 16384}}
+
     def exchange(self, cdb):
         _, cmd, _, _, sequence, action, arg1, arg2, arg3 = CDB.unpack(cdb)
         self.requests.append((cmd, action, arg1, arg2, arg3))
         if cmd == INFO:
-            payload = json.dumps({'protocol': 1, 'source': 'simulator', 'screen_width': 480, 'screen_height': 320,
-                'capabilities': ['screen', 'input'],
-                'input': {'command': 8, 'keys': ['P', 'A', 'M', 'E'], 'wheels': 2, 'lease_ms': 600},
-                'draw_stream': {'command': 9, 'packet_bytes': 4096,
-                'format': 'DRW1', 'queue_bytes': 16384}}).encode()
+            payload = json.dumps(self.device_info()).encode()
         elif cmd == 8:
             payload = struct.pack('<HHhh', action, 600, 0, 0)
         elif cmd == SCREEN_READ:
@@ -181,6 +184,84 @@ def test_named_m_modifier_keeps_epoch_and_polls_during_hold(sender_library):
     assert [item for item in states if item[1] or item[2]] == [(4, 1, 0)]
     assert any(item[:2] == (DRAW_STREAM, 2) for item in transport.requests[first:])
     assert not any(item[:2] in ((DRAW_STREAM, 0), (DRAW_STREAM, 1)) for item in transport.requests[first:])
+    client.close()
+
+
+@pytest.mark.parametrize('action, dx, dy', [('left', -1, 0), ('up', 0, -1)])
+def test_rle7_motion_publishes_moved_waveform_while_held(sender_library, monkeypatch, action, dx, dy):
+    from ds100.quick_actions import execute_motion
+
+    clock = [100.]
+    monkeypatch.setattr('ds100.protocol.time.monotonic', lambda: clock[0])
+
+    def advance(seconds):
+        clock[0] += seconds
+
+    monkeypatch.setattr('ds100.protocol.time.sleep', advance)
+
+    class Rle7Transport(StreamTransport):
+        def __init__(self, lib):
+            super().__init__(lib)
+            self.x, self.y = 160, 96
+            self.sender.expected.fill(0)
+            self.sender.expected[self.y, self.x] = 65535
+
+        def device_info(self):
+            info = super().device_info()
+            del info['source']
+            info['build'] = 'background-pc-rle7'
+            info['input']['key_ack'] = 'reported-v1'
+            return info
+
+        def exchange(self, cdb):
+            _, cmd, _, _, sequence, keys, wheel1, wheel2, _ = CDB.unpack(cdb)
+            advance(.014 if cmd == SCREEN_READ else .002)
+            response = super().exchange(cdb)
+            if cmd != INPUT_STATE:
+                return response
+            if keys == 4 and (wheel1 or wheel2):
+                state = C.byref(self.sender.state)
+                self.sender.lib.ds100_draw_point(state, self.x, self.y, 0)
+                self.sender.expected[self.y, self.x] = 0
+                self.x -= wheel1
+                self.y -= wheel2
+                self.sender.lib.ds100_draw_point(state, self.x, self.y, 65535)
+                self.sender.expected[self.y, self.x] = 65535
+                self.sender.expected[150, 430] += 1
+                self.sender.lib.ds100_draw_point(state, 430, 150, self.sender.expected[150, 430])
+                self.sender.lib.ds100_draw_present(state)
+            return make_response(cmd, sequence, struct.pack('<HHhh', keys | (keys << 8), 600, 0, 0))
+
+    transport = Rle7Transport(sender_library)
+    client = Client(transport)
+    client.info()
+    client.screen()
+    start = len(transport.requests)
+    deadline = clock[0] + .37
+
+    class Released:
+        def is_set(self):
+            return clock[0] >= deadline
+
+    positions = []
+
+    def collect(pixels, _):
+        assert client._input_keys == 4
+        point, = np.argwhere(pixels[:, :416] == 65535)
+        positions.append(tuple(point))
+
+    client.on_input_frame = collect
+    execute_motion(client, action, Released(), on_frame=collect, clock=lambda: clock[0], wait=advance)
+
+    assert len(positions) >= 3
+    assert positions == [(96 + dy * step, 160 + dx * step) for step in range(1, len(positions) + 1)]
+    assert len(positions) == client.last_motion['detents']
+    assert client.menu_resets == 0 and client.screen_mode == 'draw-stream'
+    assert client._input_keys == 0
+    assert [request for request in transport.requests[start:] if request[0] == INPUT_STATE][-1] == (
+        INPUT_STATE, 0, 0, 0, 0)
+    assert not any(cmd == SCREEN_READ or (cmd == DRAW_STREAM and action in (0, 1))
+                   for cmd, action, *_ in transport.requests[start:])
     client.close()
 
 

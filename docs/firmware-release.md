@@ -20,7 +20,7 @@ GPL-3.0-only 适用于本项目编写的补丁、追加代码和生成工具。�
 
 ## 本地生成
 
-1. 完整解压 `DS100-Firmware-rle7-Patch-Windows.zip`，保留 `_internal` 和 `rle7`。
+1. 从 [rle7 固件发布页](https://github.com/HappyAny/DS100-Remote/releases/tag/v0.5.14-rle7) 下载并完整解压 `DS100-Firmware-rle7-Patch-Windows.zip`，保留 `_internal` 和 `rle7`。
 2. 运行 `DS100-Prepare-rle7.exe`。程序下载并校验固定的官方 V4.8 文件。
 3. 确认输出 `firmware-output/atk_dso.bin` 和表中的 rle7 SHA-256。
 
@@ -39,7 +39,7 @@ python tools/prepare_firmware.py --revision rle7 --base 路径\atk_dso_v_4_8.bin
 3. 将校验后的 `atk_dso.bin` 复制到升级盘，等待写入完成并安全弹出。
 4. 拔下 USB，按 M 执行升级，等待设备提示完成。
 5. 开机后在 USB 菜单保存 `PC Remote at startup: ON`，再关机开机。
-6. 回到波形界面，连接数据线并打开 0.5.14 上位机。可在连接信息中核对运行标识。
+6. 回到波形界面，连接数据线并打开 0.5.14.dev3 上位机。可在连接信息中核对运行标识。
 
 已有有效的 PC Remote 设置会保留，缺失或无效配置按 OFF 处理。菜单中保存 ON 或 OFF 后需重启生效。
 

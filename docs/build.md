@@ -5,7 +5,13 @@
 ```powershell
 python -m pip install .
 python run_app.py --demo
-python tools/build_windows_app.py --name DS100-Remote-0.5.14
+python tools/build_windows_app.py --name DS100-Remote
+```
+
+从低完整性工作区启动带低完整性标签的 EXE，进程也会以低完整性运行，打开 USB 卷的设备句柄可能被 Windows 拒绝。构建时可用普通 Windows 用户账户把输出写到用户应用目录。[Windows 完整性机制](https://learn.microsoft.com/en-us/windows/win32/secauthz/mandatory-integrity-control)
+
+```powershell
+python tools/build_windows_app.py --name DS100-Remote --output-root "$env:LOCALAPPDATA/DS100-Remote-Build"
 ```
 
 固件生成工具的 Windows 构建使用目录模式，避免解包到系统临时目录：

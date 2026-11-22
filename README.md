@@ -2,9 +2,9 @@
 
 **Attention：刷写第三方固件有损坏设备的风险，请谨慎使用。**
 
-正点原子 DS100 的 Windows 上位机，以及基于官方 V4.8 的实验固件补丁。当前发布组合为 **rle7 + 客户端 0.5.14.dev1**，已在硬件 2.4、Bootloader 4.0、LCD 0x9488 的一台设备上验证。
+正点原子 DS100 的 Windows 上位机，以及基于官方 V4.8 的实验固件补丁。当前发布组合为 **rle7 + 上位机 0.5.14.dev3**。新版修复了长按移动时的波形刷新，并在普通 Windows 用户权限下通过了实机连接和首帧读屏检查。[验证记录](docs/validation.md)
 
-[下载 rle7 发布包](https://github.com/HappyAny/DS100-Remote/releases/tag/v0.5.14-rle7) · [R11 历史发布包](https://github.com/HappyAny/DS100-Remote/releases/tag/v0.5.6-r11) · [B站完整教程与实机演示](https://www.bilibili.com/video/BV1tHsW6kEsE/) · [操作说明](docs/usage.md) · [固件准备与升级](docs/firmware-release.md)
+[下载新版 Windows 上位机](https://github.com/HappyAny/DS100-Remote/releases/tag/v0.5.14-dev3-rle7) · [rle7 固件发布包](https://github.com/HappyAny/DS100-Remote/releases/tag/v0.5.14-rle7) · [R11 历史发布包](https://github.com/HappyAny/DS100-Remote/releases/tag/v0.5.6-r11) · [B站完整教程与实机演示](https://www.bilibili.com/video/BV1tHsW6kEsE/) · [操作说明](docs/usage.md) · [固件准备与升级](docs/firmware-release.md)
 
 [![B站：给正点原子 DS100 做了个开源上位机](docs/images/bilibili-cover.jpg)](https://www.bilibili.com/video/BV1tHsW6kEsE/)
 
@@ -30,10 +30,11 @@
 
 | 文件 | 用途 |
 | --- | --- |
-| `DS100-Remote-0.5.14-Windows.zip` | 免安装上位机，完整解压并保留 `_internal` |
-| `DS100-Firmware-rle7-Patch-Windows.zip` | 固件补丁与 Windows 本地镜像生成工具 |
-| `DS100-Remote-0.5.14-rle7-source.zip` | 对应源码、固件补丁与构建脚本 |
+| `DS100-Remote-0.5.14.dev3-Windows.zip` | 免安装上位机，完整解压并保留 `_internal` |
+| `DS100-Remote-0.5.14.dev3-source.zip` | 对应源码、固件补丁与构建脚本 |
 | `SHA256SUMS.txt` | 发布文件校验值 |
+
+在普通 Windows 用户文件夹中解压后，打开 `DS100-Remote.exe`。已安装 rle7 的设备可以直接使用新版上位机。首次安装 rle7 时，从固件发布页下载生成工具。[rle7 固件发布包](https://github.com/HappyAny/DS100-Remote/releases/tag/v0.5.14-rle7)
 
 固件以补丁形式发布。生成工具从固定来源获取官方 V4.8 底包，校验后在本地生成 `atk_dso.bin`。也可手动指定官方文件。
 
@@ -63,7 +64,7 @@ python run_app.py
 Windows EXE 使用本机 PyInstaller 构建：
 
 ```powershell
-python tools/build_windows_app.py --name DS100-Remote-0.5.14
+python tools/build_windows_app.py --name DS100-Remote
 ```
 
 rle7 固件补丁源码位于 `firmware/releases/rle7/source/`。本地生成工具使用已编译的补丁。重编固件补丁需 `arm-none-eabi-gcc`。[构建说明](docs/build.md)

@@ -16,23 +16,28 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--name', default='DS100-Remote')
+    parser.add_argument('--output-root', type=Path, default=ROOT,
+                        help='Write the build and dist directories below this path.')
     args = parser.parse_args()
-    if not re.fullmatch(r'[A-Za-z0-9._-]+', args.name):
-        parser.error('Use a plain application folder name.')
+    if not re.fullmatch(r'[A-Za-z0-9._-]+', args.name) or args.name.endswith('.'):
+        parser.error('Use a plain application folder name without a trailing dot.')
     if os.name != "nt":
         raise OSError("This application build requires Windows.")
+    output_root = args.output_root.resolve()
     os.chdir(ROOT)
-    build = ROOT / ("build/windows-app-" + args.name)
+    build = output_root / ("build/windows-app-" + args.name)
+    output = output_root / "dist" / args.name
+    if build.resolve() != build or output.resolve() != output:
+        parser.error('The build and application directories must not be redirected.')
     build.mkdir(parents=True, exist_ok=True)
     arguments = ["--noconfirm", "--onedir", "--windowed", "--name", args.name,
-                 "--paths", str(ROOT / "src"), "--distpath", str(ROOT / "dist"), "--workpath", str(build),
+                 "--paths", str(ROOT / "src"), "--distpath", str(output_root / "dist"), "--workpath", str(build),
                  "--specpath", str(build), "--add-data", f"{ROOT / 'assets/fonts'}{os.pathsep}assets/fonts"]
     for name in ("matplotlib", "scipy", "pandas", "pytest", "IPython", "notebook", "PyQt5", "PyQt6", "tkinter"):
         arguments.extend(["--exclude-module", name])
     with (build / "build.log").open("w", encoding="utf-8") as log:
         subprocess.run([sys.executable, "-m", "PyInstaller", *arguments, str(ROOT / "run_app.py")],
                        stdout=log, stderr=subprocess.STDOUT, check=True)
-    output = ROOT / "dist" / args.name
     for name in ("LICENSE", "THIRD_PARTY_NOTICES.md", "README.md"):
         shutil.copyfile(ROOT / name, output / name)
     notices = output / "third-party-licenses"

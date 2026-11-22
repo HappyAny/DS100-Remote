@@ -4,7 +4,7 @@
 
 **Attention：刷写第三方固件有损坏设备的风险，请谨慎使用。**
 
-使用 rle7 时，在示波器的 USB 菜单保存 `PC Remote at startup: ON`，关机再开机。停在波形界面，连接数据线并打开 0.5.14 上位机，程序会自动连接。保存 OFF 后重启可关闭上位机功能。USB 菜单中的 `USB Files (read-only)` 为独立操作。
+在普通 Windows 用户文件夹完整解压上位机，保留 EXE 旁的 `_internal`。使用 rle7 时，在示波器的 USB 菜单保存 `PC Remote at startup: ON`，关机再开机。停在波形界面并连接数据线，打开 0.5.14.dev3，程序会自动连接。保存 OFF 后重启可关闭上位机功能。USB 菜单中的 `USB Files (read-only)` 为独立操作。
 
 仍使用 R11 的设备可按视频操作。R11 的按键确认需要 0.5.5 或更新上位机。完全关机的设备需要在实机按 P 开机。
 

@@ -15,13 +15,15 @@ from ds100.protocol import INFO, make_cdb
 
 
 @pytest.fixture
-def disk():
-    return {
+def disk(monkeypatch):
+    record = {
         "Index": 11, "DeviceID": r"\\.\PHYSICALDRIVE11",
         "Model": "ATK DSO100 USB Device", "Size": 16777216,
         "PNPDeviceID": r"USBSTOR\DISK&VEN_ATK&PROD_DSO100&REV_1.00\ATK-DSO-V1.0.0&0",
         "UsbDeviceID": r"USB\VID_28E9&PID_028F\ATK-DSO-V1.0.0", "Volumes": ["Q:"],
     }
+    monkeypatch.setattr(identity, "_usb_parent_id", lambda instance: record.get("UsbDeviceID", ""))
+    return record
 
 
 def test_exact_disk_and_usb_identity_is_allowed(monkeypatch, disk):
@@ -29,6 +31,61 @@ def test_exact_disk_and_usb_identity_is_allowed(monkeypatch, disk):
     monkeypatch.setattr(identity, "_query_disk_identity", query)
     assert identity.verify_device_identity(Path("q:/")) == disk
     query.assert_called_once_with("Q:")
+
+
+def test_usb_parent_comes_from_the_selected_disk_node(monkeypatch, disk):
+    records = [{**disk, "UsbDeviceID": r"USB\VID_FFFF&PID_FFFF\OTHER"}]
+    monkeypatch.setattr(identity, "_query_disk_identity", lambda drive: records)
+    parent = Mock(return_value=disk["UsbDeviceID"])
+    monkeypatch.setattr(identity, "_usb_parent_id", parent)
+    assert identity.verify_device_identity("Q:/") == disk
+    parent.assert_called_once_with(disk["PNPDeviceID"])
+
+
+@pytest.mark.parametrize("removed", [False, True])
+def test_cfgmgr_walks_actual_parent_nodes_and_checks_errors(monkeypatch, removed):
+    instance = r"USBSTOR\DISK&VEN_ATK&PROD_DSO100\ATK-DSO-V1.0.0&0"
+    identifiers = {42: r"USBSTOR\OTHER\INTERMEDIATE", 43: r"USB\VID_28E9&PID_028F\ATK-DSO-V1.0.0"}
+    visited = []
+
+    def set_word(target, value):
+        C.cast(target, C.POINTER(C.c_uint32)).contents.value = value
+
+    def locate(target, query, flags):
+        assert query == instance and flags == 0
+        set_word(target, 41)
+        return 0
+
+    def parent(target, child, flags):
+        assert flags == 0
+        visited.append(child.value)
+        if removed and child.value == 42:
+            return 0xD
+        set_word(target, child.value + 1)
+        return 0
+
+    def size(target, node, flags):
+        assert flags == 0
+        set_word(target, len(identifiers[node.value]))
+        return 0
+
+    def read_id(node, target, capacity, flags):
+        assert capacity == len(identifiers[node.value]) + 1 and flags == 0
+        target.value = identifiers[node.value]
+        return 0
+
+    manager = SimpleNamespace(CM_Locate_DevNodeW=Mock(side_effect=locate),
+                              CM_Get_Parent=Mock(side_effect=parent),
+                              CM_Get_Device_ID_Size=Mock(side_effect=size),
+                              CM_Get_Device_IDW=Mock(side_effect=read_id))
+    monkeypatch.setattr(identity.C, "WinDLL", Mock(return_value=manager), raising=False)
+    if removed:
+        with pytest.raises(OSError, match="ConfigMgr 0xd"):
+            identity._usb_parent_id(instance)
+        assert manager.CM_Get_Device_IDW.call_count == 1
+    else:
+        assert identity._usb_parent_id(instance) == identifiers[43]
+    assert visited == [41, 42]
 
 
 @pytest.mark.parametrize("field,value,message", [

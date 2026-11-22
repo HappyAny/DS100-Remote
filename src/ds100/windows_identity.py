@@ -1,5 +1,6 @@
 """Check the Windows disk and USB identity before opening a remote transport."""
 
+import ctypes as C
 import json
 import os
 from pathlib import Path
@@ -24,19 +25,8 @@ if ($volume.Count -ne 1) { throw 'The selected volume is not present.' }
 $disks = @($volume | Get-CimAssociatedInstance -Association Win32_LogicalDiskToPartition -ResultClassName Win32_DiskPartition -OperationTimeoutSec 5 |
     Get-CimAssociatedInstance -Association Win32_DiskDriveToDiskPartition -ResultClassName Win32_DiskDrive -OperationTimeoutSec 5)
 $records = @(foreach ($disk in $disks) {
-    $instance = [string]$disk.PNPDeviceID
-    $usb = ''
-    for ($depth = 0; $depth -lt 5; $depth++) {
-        $property = Get-PnpDeviceProperty -InstanceId $instance -KeyName 'DEVPKEY_Device_Parent'
-        $instance = [string]$property.Data
-        if ([string]::IsNullOrEmpty($instance)) { break }
-        if ($instance.StartsWith('USB\VID_', [System.StringComparison]::OrdinalIgnoreCase)) {
-            $usb = $instance
-            break
-        }
-    }
     [pscustomobject]@{Index=$disk.Index; DeviceID=$disk.DeviceID; Model=$disk.Model;
-        Size=$disk.Size; PNPDeviceID=$disk.PNPDeviceID; UsbDeviceID=$usb; Volumes=@($volume.DeviceID)}
+        Size=$disk.Size; PNPDeviceID=$disk.PNPDeviceID; Volumes=@($volume.DeviceID)}
 })
 ConvertTo-Json -InputObject $records -Depth 4 -Compress
 """
@@ -72,6 +62,42 @@ def _query_disk_identity(drive):
     return records
 
 
+def _usb_parent_id(disk_instance):
+    """Follow the selected disk's present device node to its own USB parent."""
+    manager = C.WinDLL("cfgmgr32.dll")
+    word = C.c_uint32
+    word_pointer = C.POINTER(word)
+    locate = manager.CM_Locate_DevNodeW
+    parent_of = manager.CM_Get_Parent
+    id_size = manager.CM_Get_Device_ID_Size
+    read_id = manager.CM_Get_Device_IDW
+    for call, arguments in (
+        (locate, [word_pointer, C.c_wchar_p, word]),
+        (parent_of, [word_pointer, word, word]),
+        (id_size, [word_pointer, word, word]),
+        (read_id, [word, C.POINTER(C.c_wchar), word, word]),
+    ):
+        call.argtypes = arguments
+        call.restype = word
+
+    def read(call, *arguments):
+        status = call(*arguments)
+        if status:
+            raise OSError(f"Windows could not read the selected disk's USB device tree (ConfigMgr {status:#x}).")
+
+    node, parent, size = word(), word(), word()
+    read(locate, C.byref(node), disk_instance, 0)
+    for _ in range(5):
+        read(parent_of, C.byref(parent), node, 0)
+        read(id_size, C.byref(size), parent, 0)
+        identifier = C.create_unicode_buffer(size.value + 1)
+        read(read_id, parent, identifier, len(identifier), 0)
+        if identifier.value.upper().startswith("USB\\VID_"):
+            return identifier.value
+        node.value = parent.value
+    return ""
+
+
 def verify_device_identity(root):
     """Require one matching physical disk and its own USB parent; fail closed."""
     drive = drive_name(root)
@@ -98,10 +124,10 @@ def verify_device_identity(root):
         raise OSError("The disk PnP identity is not a USB storage device.")
     if match[1].upper() not in (SERIAL, SERIAL + "&0"):
         raise OSError("The disk serial does not match the supported DS100.")
-    usb = disk.get("UsbDeviceID")
+    usb = _usb_parent_id(pnp)
     match = re.fullmatch(r"USB\\VID_([0-9A-F]{4})&PID_([0-9A-F]{4})\\([^\\]+)", usb, re.IGNORECASE) if isinstance(usb, str) else None
     if match is None or (match[1].upper(), match[2].upper()) != ("28E9", "028F"):
         raise OSError("The disk's USB parent does not have the supported VID 28E9 and PID 028F.")
     if match[3].upper() != SERIAL:
         raise OSError("The USB serial does not match the supported DS100.")
-    return disk
+    return {**disk, "UsbDeviceID": usb}

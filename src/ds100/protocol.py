@@ -265,8 +265,13 @@ class Client:
             if inputs.get('key_ack') not in (None, 'reported-v1'):
                 raise ProtocolError('The key acknowledgement format is not supported.')
             self.reported_key_ack = inputs.get('key_ack') == 'reported-v1'
-        self.fast_modifiers = info.get('build') in ('background-r9-bounded-follow', 'background-r10-input-ready',
-            'background-r11-input-ack', 'background-r12-usb-pllsai', 'background-r19-minimal-opt', 'background-r20-resilient', 'background-r21-usb-optin', 'background-r22-usb-english', 'background-r23-idle-fastpath') or info.get('source') == 'simulator'
+        self.fast_modifiers = (info.get('build') in (
+            'background-r9-bounded-follow', 'background-r10-input-ready',
+            'background-r11-input-ack', 'background-r12-usb-pllsai',
+            'background-r19-minimal-opt', 'background-r20-resilient',
+            'background-r21-usb-optin', 'background-r22-usb-english',
+            'background-r23-idle-fastpath', 'background-pc-rle7',
+        ) or info.get('source') == 'simulator')
         return info
 
     def queue_input(self, keys, wheel1=0, wheel2=0):

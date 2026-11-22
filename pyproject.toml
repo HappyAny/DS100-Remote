@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ds100-remote-research"
-version = "0.5.14.dev1"
+version = "0.5.14.dev3"
 description = "DS100 desktop tools and firmware research"
 requires-python = ">=3.10"
 license = "GPL-3.0-only"

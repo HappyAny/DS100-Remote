@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-22",
+  "client_version": "0.5.14.dev3",
+  "firmware_build": "background-pc-rle7",
+  "firmware_patch_release": "v0.5.14-rle7",
+  "windows_executable_sha256": "dff63c8a5fad427934c5271b351086df21964eae75c48c56754981fee2aa585e",
+  "windows_executable_offline_startup_passed": true,
+  "frozen_hardware_connection_check": {
+    "application_connection_flow": true,
+    "administrator": false,
+    "hardware": {
+      "units_tested": 1,
+      "revision": "2.4",
+      "bootloader": "4.0",
+      "lcd_id": "0x9488"
+    },
+    "width": 480,
+    "height": 320,
+    "complete_pixels": 153600,
+    "screen_transport": "DRW1"
+  },
+  "motion_regression": {
+    "model_sender": "C drawing queue",
+    "axes": [
+      "horizontal",
+      "vertical"
+    ],
+    "complete_moved_frames_before_release": true,
+    "drawing_session_restarted_during_hold": false,
+    "physical_motion_tested": false
+  }
+}
